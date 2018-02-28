@@ -59,7 +59,7 @@
 		window.onload = function () {
 
 
-		displayCelebrities();
+		
 
 
 
@@ -67,7 +67,7 @@
 
 
 		var btnSubmit_Click = function (){
-		document.write = ("inside submit click");
+		
 
 
 		 //<!-- alert ("Round is " + round);  -->
@@ -75,7 +75,8 @@
 					//alert ("insde round and wager is " + user_wager);
 
 				celebrity_birthdate_guess = new Date (String(document.getElementById("usrAnswer").value));
-				if (document.getElementById("usrAnswer").value == "" || !isNaN(document.getElementById("usrAnswer").value)) {
+				if (document.getElementById("usrAnswer").value == "" || !isNaN(document.getElementById("usrAnswer").value) 
+					) {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "Must enter date to continue! Format (MM/DD/YYYY)";
 				}
@@ -147,9 +148,14 @@
 
 						var btnSubmitRef = document.getElementById("userSubmitButton");
 						btnSubmitRef.style.display = "none";
-
+						var gameScreenRef = document.getElementById("gameScreen");
+						gameScreenRef.style.display = "none";
 						var finalRndDiv = document.getElementById("finalRound");
 						finalRndDiv.style.display = "block";
+						document.getElementById("usrWager").value = "";
+						var scoreDiv = document.getElementById("lblFinalScore");
+						scoreDiv.style.display = "block";
+						scoreDiv.innerHTML = "Your current score is = " + score;
 						//<!-- finalRound(); -->
 					}
 					}
@@ -161,6 +167,8 @@
 
 			var random_selection = getRandomIntInclusive(0,15);
 			if (round >= 10) {
+				var gameScreenRef = document.getElementById("gameScreen");
+				gameScreenRef.style.display = "block";
 				user_wager = document.getElementById("usrWager").value;
 				// <!-- if (parseInt(user_wager) > parseInt(score) || parseInt(user_wager) < 0) { -->
 
@@ -187,7 +195,8 @@
 
 			if (celebrities[random_selection] != null) {
 				if (round == 0){
-
+					document.getElementById("usrWager").value = "";
+					
 					celebrities[0] = new Celebrity("Harrison Ford", "07/13/1942", "images/harrison-ford.jpg");
 					celebrities[1] = new Celebrity("Samuel Jackson", "12/21/1948", "images/sam-jackson.jpg");
 					celebrities[2] = new Celebrity("Morgan Freeman", "06/01/1937", "images/morgan-freeman.jpg");
@@ -207,7 +216,9 @@
 					var playAgainRef = document.getElementById("playAgain");
 					playAgainRef.style.display = "none";
 
-									var imageDisplayRef = document.getElementById("imgDisplay");
+				var gameScreenRef = document.getElementById("gameScreen");
+				gameScreenRef.style.display = "block";
+				var imageDisplayRef = document.getElementById("imgDisplay");
 				imageDisplayRef.style.display = "block";
 				var usrAnswerRef = document.getElementById("userInput");
 				usrAnswerRef.style.display = "block";
@@ -267,13 +278,31 @@
 			score = 0;
 			user_wager = 0;
 			displayCelebrities();
+			
 
 		}
-
+		
+		var btnStartGame_Click = function () {
+			var welcomeScreenRef = document.getElementById("welcomeScreen");
+			welcomeScreenRef.style.display = "none";
+			displayCelebrities();
+				
+			
+			}
+			
+		var btnMainMenu_Click = function () {
+			var welcomeScreenRef = document.getElementById("welcomeScreen");
+			welcomeScreenRef.style.display = "block";
+			var gameScreenRef = document.getElementById("gameScreen");
+			gameScreenRef.style.display = "none";
+			
+		}
+			document.getElementById("btnStartGame").onclick = btnStartGame_Click;
 			document.getElementById("btnFinalRound").onclick = finalRound_Click;
 
 			document.getElementById("btnSubmit").onclick = btnSubmit_Click;
 				document.getElementById("btnPlayAgain").onclick = btnPlayAgain_Click;
+				document.getElementById("btnMainMenu").onclick = btnMainMenu_Click;
 			};
 
 
@@ -315,7 +344,7 @@
 
 
             </div>
-            <div id="gameScreen">
+            <div id="gameScreen" style="display: none;">
                 <div id="lblScore"></div>
                 <div id="imgDisplay">
                 </div>
@@ -329,10 +358,12 @@
                 </div>
                 <div id="playAgain" style="display: none;">
                     <button type="button" id="btnPlayAgain">Play Again</button>
+					<button type="button" id="btnMainMenu">No</button>
                 </div>
 
             </div>
             <div id="finalRound" style="display: none;">
+				<div id="lblFinalScore"></div>
                 <h2>FINAL ROUND</h2>
                 <h3>This is the final round of the game. Please follow the instructions below.</h3>
                 <h3>INSTRUCTIONS:</h3>
