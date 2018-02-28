@@ -75,7 +75,7 @@
 				else {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "";
-					alert ("usr date is " + celebrity_birthdate_guess + "------- actual date is " + bdate);
+					//alert ("usr date is " + celebrity_birthdate_guess + "------- actual date is " + bdate);
 					var diffDays = parseInt((bdate - celebrity_birthdate_guess) / (1000 * 60 * 60 * 24));
 					if (celebrity_birthdate_guess.toDateString() == bdate.toDateString() || (diffDays >= -730 && diffDays <= 730)) {
 						//alert("inside if");
