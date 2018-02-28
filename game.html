@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -10,29 +10,21 @@
     <title>Lab 3: Celebrity Game</title>
     <script type="text/javascript">
 		//<!--alert("YOU ARE VIEWING THIS PAGE!!!");-->
-
-
-			class Celebrity {
-
-
-				constructor (name, birthdate, image) {
+		class Celebrity {
+			constructor (name, birthdate, image) {
 					this.name = name;
 					this.birthdate = birthdate;
 					this.image = image;
-				}
 			}
-
-					//<!--random number generator within specified values. Got the code form mozilla developer page-->
+		}
+		//<!--random number generator within specified values. Got the code form mozilla developer page-->
 		function getRandomIntInclusive(min, max) {
 			min = Math.ceil(min);
 			max = Math.floor(max);
 			return Math.floor(Math.random() * (max - min + 1)) + min; // <!--The maximum is inclusive and the minimum is inclusive-->
 		};
-
-
 		var count;
-		var celebrities = new Celebrity(16);
-
+		var celebrities = new Celebrity(30);
 			celebrities[0] = new Celebrity("Harrison Ford", "07/13/1942", "images/harrison-ford.jpg");
 			celebrities[1] = new Celebrity("Samuel Jackson", "12/21/1948", "images/sam-jackson.jpg");
 			celebrities[2] = new Celebrity("Morgan Freeman", "06/01/1937", "images/morgan-freeman.jpg");
@@ -49,154 +41,131 @@
 			celebrities[13] = new Celebrity("Ian McKellen", "05/25/1939", "images/ian-mckellen.jpg");
 			celebrities[14] = new Celebrity("Stanley Tucci", "11/11/1960", "images/stanley-tucci.jpg");
 			celebrities[15] = new Celebrity("Robert De Niro", "08/17/1943", "images/robert-deniro.jpg");
-
+			celebrities[16] = new Celebrity("Cameron Diaz", "08/30/1972", "images/cameron-diaz.jpg");
+			celebrities[17] = new Celebrity("Matt Damon", "10/08/1970", "images/matt-damon.jpg");
+			celebrities[18] = new Celebrity("Liam Neeson", "06/07/1952", "images/liam-neeson.jpg");
+			celebrities[19] = new Celebrity("Andy Serkis", "04/20/1964", "images/andy-serkis.jpg");
+			celebrities[20] = new Celebrity("Will Smith", "09/25/1968", "images/will-smith.jpg");
+			celebrities[21] = new Celebrity("Ben Stiller", "11/30/1965", "images/ben-stiller.jpg");
+			celebrities[22] = new Celebrity("Orlando Bloom", "01/13/1977", "images/orlando-bloom.jpg");
+			celebrities[23] = new Celebrity("Woody Harrelson", "07/23/1961", "images/woody-harrelson.jpg");
+			celebrities[24] = new Celebrity("Julia Roberts", "10/28/1967", "images/julia-roberts.jpg");
+			celebrities[25] = new Celebrity("Emma Watson", "04/15/1990", "images/emma-watson.jpg");
+			celebrities[26] = new Celebrity("Brad Pitt", "12/18/1963", "images/brad-pitt.jpg");
+			celebrities[27] = new Celebrity("Adam Sandler", "09/09/1966", "images/adam-sandler.jpg");
+			celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe");
+			celebrities[29] = new Celebrity("Helena Bonham Carter", "05/26/1966", "images/helena-bonham-carter.jpg");
 			var celeb, name, bdate, image;
 			var score = 0;
 			var round = 0;
 			var user_wager = 0;
-
-
 		window.onload = function () {
-
-
 		
-
-
-
-
-
-
 		var btnSubmit_Click = function (){
 		
-
-
 		 //<!-- alert ("Round is " + round);  -->
 			if (round>10) {
 					//alert ("insde round and wager is " + user_wager);
-
 				celebrity_birthdate_guess = new Date (String(document.getElementById("usrAnswer").value));
 				if (document.getElementById("usrAnswer").value == "" || !isNaN(document.getElementById("usrAnswer").value) 
-					) {
+					|| !Date.parse(document.getElementById("usrAnswer").value)) {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "Must enter date to continue! Format (MM/DD/YYYY)";
 				}
 				else {
-				var errorTxt = document.getElementById("errorLabel");
+					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "";
-				alert ("usr date is " + celebrity_birthdate_guess + "------- actual date is " + bdate);
-				var diffDays = parseInt((bdate - celebrity_birthdate_guess) / (1000 * 60 * 60 * 24));
-
-				if (celebrity_birthdate_guess.toDateString() == bdate.toDateString() || (diffDays >= -730 && diffDays <= 730)) {
-					//alert("inside if");
-					score = parseInt(score) + parseInt(user_wager);
-				}
-				else {
-					//alert("inside else");
-					score = parseInt(score) - parseInt(user_wager);
-				}
-				var scoreDiv = document.getElementById("lblScore");
-				scoreDiv.innerHTML = "Your Final Score is = " + score;
-
+					alert ("usr date is " + celebrity_birthdate_guess + "------- actual date is " + bdate);
+					var diffDays = parseInt((bdate - celebrity_birthdate_guess) / (1000 * 60 * 60 * 24));
+					if (celebrity_birthdate_guess.toDateString() == bdate.toDateString() || (diffDays >= -730 && diffDays <= 730)) {
+						//alert("inside if");
+						score = parseInt(score) + parseInt(user_wager);
+					}
+					else {
+						//alert("inside else");
+						score = parseInt(score) - parseInt(user_wager);
+					}
+					var scoreDiv = document.getElementById("lblScore");
+					scoreDiv.innerHTML = "Your Final Score is = " + score;
 					var imageDisplayRef = document.getElementById("imgDisplay");
 					console.log = ("image display ref is " + imageDisplayRef);
 					imageDisplayRef.style.display = "none";
 					var usrAnswerRef = document.getElementById("userInput");
 					usrAnswerRef.style.display = "none";
-
 					var btnSubmitRef = document.getElementById("userSubmitButton");
 					btnSubmitRef.style.display = "none";
 					var playAgainRef = document.getElementById("playAgain");
 					playAgainRef.style.display = "block";
-
 				}
-
-
-
 			}
-
 			else {
 				var celebrity_name_guess = document.getElementById("usrAnswer").value;
 				//check if correct and apply score
 				if (celebrity_name_guess.toLowerCase() == celeb.name.toLowerCase()) {
 					score += 10;
-										//<!-- document.getElementById("usrAnswer").value = ""; -->
-
-
-
-				}
+				}//check if not valid throw error
 				if (celebrity_name_guess == "" || !isNaN(celebrity_name_guess)) {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "Must enter name to continue!";
-
-
 				}else {
-					var errorTxt = document.getElementById("errorLabel");
-					errorTxt.innerHTML = "";
-					if (round < 10) {
-					//<!-- alert("inside if and celebrity name is " + celebrity_name_guess); -->
-					// <!-- celebrity_name_guess = ""; -->
-						displayCelebrities();
-						//<!-- console.log = ("inside if"); -->
-					}
-					else {
-						console.log = ("inside else");
-						var imageDisplayRef = document.getElementById("imgDisplay");
-						console.log = ("image display ref is " + imageDisplayRef);
-						imageDisplayRef.style.display = "none";
-						var usrAnswerRef = document.getElementById("userInput");
-						usrAnswerRef.style.display = "none";
-
-						var btnSubmitRef = document.getElementById("userSubmitButton");
-						btnSubmitRef.style.display = "none";
-						var gameScreenRef = document.getElementById("gameScreen");
-						gameScreenRef.style.display = "none";
-						var finalRndDiv = document.getElementById("finalRound");
-						finalRndDiv.style.display = "block";
-						document.getElementById("usrWager").value = "";
-						var scoreDiv = document.getElementById("lblFinalScore");
-						scoreDiv.style.display = "block";
-						scoreDiv.innerHTML = "Your current score is = " + score;
-						//<!-- finalRound(); -->
-					}
+						var errorTxt = document.getElementById("errorLabel");
+						errorTxt.innerHTML = "";
+						if (round < 10) {
+							displayCelebrities();
+						}
+						else {
+							if (parseInt(score) == 0) {
+								var scoreDiv = document.getElementById("lblScore");
+								scoreDiv.innerHTML = "Your Final Score is = " + score;
+								var imageDisplayRef = document.getElementById("imgDisplay");
+								imageDisplayRef.style.display = "none";
+								var usrAnswerRef = document.getElementById("userInput");
+								usrAnswerRef.style.display = "none";
+								var btnSubmitRef = document.getElementById("userSubmitButton");
+								btnSubmitRef.style.display = "none";
+								var playAgainRef = document.getElementById("playAgain");
+								playAgainRef.style.display = "block";
+								
+							}
+							else {
+								var imageDisplayRef = document.getElementById("imgDisplay");
+								imageDisplayRef.style.display = "none";
+								var usrAnswerRef = document.getElementById("userInput");
+								usrAnswerRef.style.display = "none";
+								var btnSubmitRef = document.getElementById("userSubmitButton");
+								btnSubmitRef.style.display = "none";
+								var gameScreenRef = document.getElementById("gameScreen");
+								gameScreenRef.style.display = "none";
+								var finalRndDiv = document.getElementById("finalRound");
+								finalRndDiv.style.display = "block";
+								document.getElementById("usrWager").value = "";
+								var scoreDiv = document.getElementById("lblFinalScore");
+								scoreDiv.style.display = "block";
+								scoreDiv.innerHTML = "Your current score is = " + score;
+								//<!-- finalRound(); -->
+							}
+						}
 					}
 			}
-
-
 		};
 		function displayCelebrities() {
-
-			var random_selection = getRandomIntInclusive(0,15);
+			var random_selection = getRandomIntInclusive(0,29);
 			if (round >= 10) {
 				var gameScreenRef = document.getElementById("gameScreen");
 				gameScreenRef.style.display = "block";
 				user_wager = document.getElementById("usrWager").value;
-				// <!-- if (parseInt(user_wager) > parseInt(score) || parseInt(user_wager) < 0) { -->
-
-					// <!-- alert("inside if of wager");  -->
-					//<!-- var errorTxt = document.getElementById("errorLbl"); -->
-				//	<!-- errorTxt.innerHTML = "Wager must be below your current score and above 0"; -->
-				//	<!-- finalRound(); -->
-
-				//<!-- } -->
-				//<!-- else { --> -->
 				var finalRndDiv = document.getElementById("finalRound");
 				finalRndDiv.style.display = "none";
 				var imageDisplayRef = document.getElementById("imgDisplay");
 				imageDisplayRef.style.display = "block";
 				var usrAnswerRef = document.getElementById("userInput");
 				usrAnswerRef.style.display = "block";
-
 				var btnSubmitRef = document.getElementById("userSubmitButton");
 				btnSubmitRef.style.display = "block";
-			//	<!--}-->
-
-
 			}
-
 			if (celebrities[random_selection] != null) {
 				if (round == 0){
 					document.getElementById("usrWager").value = "";
-					
 					celebrities[0] = new Celebrity("Harrison Ford", "07/13/1942", "images/harrison-ford.jpg");
 					celebrities[1] = new Celebrity("Samuel Jackson", "12/21/1948", "images/sam-jackson.jpg");
 					celebrities[2] = new Celebrity("Morgan Freeman", "06/01/1937", "images/morgan-freeman.jpg");
@@ -213,19 +182,31 @@
 					celebrities[13] = new Celebrity("Ian McKellen", "05/25/1939", "images/ian-mckellen.jpg");
 					celebrities[14] = new Celebrity("Stanley Tucci", "11/11/1960", "images/stanley-tucci.jpg");
 					celebrities[15] = new Celebrity("Robert De Niro", "08/17/1943", "images/robert-deniro.jpg");
+					celebrities[16] = new Celebrity("Cameron Diaz", "08/30/1972", "images/cameron-diaz.jpg");
+					celebrities[17] = new Celebrity("Matt Damon", "10/08/1970", "images/matt-damon.jpg");
+					celebrities[18] = new Celebrity("Liam Neeson", "06/07/1952", "images/liam-neeson.jpg");
+					celebrities[19] = new Celebrity("Andy Serkis", "04/20/1964", "images/andy-serkis.jpg");
+					celebrities[20] = new Celebrity("Will Smith", "09/25/1968", "images/will-smith.jpg");
+					celebrities[21] = new Celebrity("Ben Stiller", "11/30/1965", "images/ben-stiller.jpg");
+					celebrities[22] = new Celebrity("Orlando Bloom", "01/13/1977", "images/orlando-bloom.jpg");
+					celebrities[23] = new Celebrity("Woody Harrelson", "07/23/1961", "images/woody-harrelson.jpg");
+					celebrities[24] = new Celebrity("Julia Roberts", "10/28/1967", "images/julia-roberts.jpg");
+					celebrities[25] = new Celebrity("Emma Watson", "04/15/1990", "images/emma-watson.jpg");
+					celebrities[26] = new Celebrity("Brad Pitt", "12/18/1963", "images/brad-pitt.jpg");
+					celebrities[27] = new Celebrity("Adam Sandler", "09/09/1966", "images/adam-sandler.jpg");
+					celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe");
+					celebrities[29] = new Celebrity("Helena Bonham Carter", "05/26/1966", "images/helena-bonham-carter.jpg");
 					var playAgainRef = document.getElementById("playAgain");
 					playAgainRef.style.display = "none";
-
-				var gameScreenRef = document.getElementById("gameScreen");
-				gameScreenRef.style.display = "block";
-				var imageDisplayRef = document.getElementById("imgDisplay");
-				imageDisplayRef.style.display = "block";
-				var usrAnswerRef = document.getElementById("userInput");
-				usrAnswerRef.style.display = "block";
-
-				var btnSubmitRef = document.getElementById("userSubmitButton");
-				btnSubmitRef.style.display = "block";
-					}
+					var gameScreenRef = document.getElementById("gameScreen");
+					gameScreenRef.style.display = "block";
+					var imageDisplayRef = document.getElementById("imgDisplay");
+					imageDisplayRef.style.display = "block";
+					var usrAnswerRef = document.getElementById("userInput");
+					usrAnswerRef.style.display = "block";
+					var btnSubmitRef = document.getElementById("userSubmitButton");
+					btnSubmitRef.style.display = "block";
+				}
 				celeb = celebrities[random_selection];
 				delete celebrities[random_selection];
 				name = celeb.name;
@@ -235,78 +216,60 @@
 				imageDiv.innerHTML = '<img src="' + image +'">';
 				var scoreDiv = document.getElementById("lblScore");
 				scoreDiv.innerHTML = "Score is = " + score;
-				 document.getElementById("usrAnswer").value = "";
+				document.getElementById("usrAnswer").value = "";
 				round++;
 			}
 			else {
 				displayCelebrities();
 			}
-
 		}
+		
 		var finalRound_Click = function () {
 				var scoreDiv = document.getElementById("lblScore");
 				scoreDiv.innerHTML = "Score is = " + score;
-
-				//display score and ask them how much they want to wager
-				//ask
-				//<!-- var finalRndDiv = document.getElementById("finalRound"); -->
-				//<!-- finalRndDiv.style.display = "block"; -->
 				user_wager = document.getElementById("usrWager").value;
                 if (parseInt(user_wager) > parseInt(score) || parseInt(user_wager) < 0 || isNaN(user_wager) || user_wager == "")
 				{
 					alert("inside if of wager");
 					var errorTxt = document.getElementById("errorLbl");
 					errorTxt.innerHTML = "Wager must be a positive number and equal to or below your current score";
-
 				}
 				else {
-
 					displayCelebrities();
 				}
-			//	<!-- else { -->
-			//	<!-- alert("inside else of wager"); -->
-			////		<!-- document.getElementById("btnFinalRound").onclick = displayCelebrities; -->
-			//	<!-- } -->
-//
-			//	<!-- finalRndDiv.style.display = "none"; -->
-
-
 		}
-
 		var btnPlayAgain_Click = function (){
 			round = 0;
 			score = 0;
 			user_wager = 0;
 			displayCelebrities();
-			
-
 		}
 		
 		var btnStartGame_Click = function () {
 			var welcomeScreenRef = document.getElementById("welcomeScreen");
 			welcomeScreenRef.style.display = "none";
 			displayCelebrities();
-				
-			
-			}
+		}
 			
 		var btnMainMenu_Click = function () {
+			round = 0;
+			score = 0;
+			user_wager = 0;
 			var welcomeScreenRef = document.getElementById("welcomeScreen");
 			welcomeScreenRef.style.display = "block";
 			var gameScreenRef = document.getElementById("gameScreen");
 			gameScreenRef.style.display = "none";
-			
+			var playAgainRef = document.getElementById("playAgain");
+			playAgainRef.style.display = "none";
+			var finalRndDiv = document.getElementById("finalRound");
+			finalRndDiv.style.display = "none";	
 		}
 			document.getElementById("btnStartGame").onclick = btnStartGame_Click;
 			document.getElementById("btnFinalRound").onclick = finalRound_Click;
-
 			document.getElementById("btnSubmit").onclick = btnSubmit_Click;
-				document.getElementById("btnPlayAgain").onclick = btnPlayAgain_Click;
-				document.getElementById("btnMainMenu").onclick = btnMainMenu_Click;
+			document.getElementById("btnPlayAgain").onclick = btnPlayAgain_Click;
+			document.getElementById("btnMainMenu").onclick = btnMainMenu_Click;
 			};
-
-
-
     </script>
 
 
@@ -321,13 +284,8 @@
         <div id="header">
             <h1>Celebrity Game</h1>
         </div>
-
-
-
-        
-        <!-- birthdate? betting all the score? -->
         <div id="content">
-
+		
             <div id="welcomeScreen">
                 <h2>Welcome to Celebrity Game!</h2>
                 <h3>This game has 10 rounds and each round is worth 10 points</h3>
@@ -365,7 +323,8 @@
             <div id="finalRound" style="display: none;">
 				<div id="lblFinalScore"></div>
                 <h2>FINAL ROUND</h2>
-                <h3>This is the final round of the game. Please follow the instructions below.</h3>
+                <h3>This is the final round of the game. Instead of guessing the celebrities name,
+				you will guess their birthdate which has to be within 2 years. Please follow the instructions below.</h3>
                 <h3>INSTRUCTIONS:</h3>
                 <h3>1) Enter how much you are willing to wager from your current total in the text below.</h3>
                 <input id="usrWager" type="text" /> <span id="errorLbl"></span>
@@ -375,13 +334,9 @@
                 <h3>Ready? Then click <strong>PLAY</strong> below to start the final round</h3>
                 <button type="button" id="btnFinalRound">Play</button>
             </div>
-
-
         </div>
 
-
-
-    <p>
+    <p style = "display: none;">
         link to imdb page: http://www.imdb.com/list/ls074328260/
         ** check if date is within 2 years or within 730 days
         var d = new Date("12/12/2018");
