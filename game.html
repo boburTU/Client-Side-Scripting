@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
 
     <title>Lab 3: Celebrity Game</title>
     <script type="text/javascript">
-		//<!--alert("YOU ARE VIEWING THIS PAGE!!!");-->
+
 		class Celebrity {
 			constructor (name, birthdate, image) {
 					this.name = name;
@@ -21,7 +21,7 @@
 		function getRandomIntInclusive(min, max) {
 			min = Math.ceil(min);
 			max = Math.floor(max);
-			return Math.floor(Math.random() * (max - min + 1)) + min; // <!--The maximum is inclusive and the minimum is inclusive-->
+			return Math.floor(Math.random() * (max - min + 1)) + min; // <!--The maximum and the minimum is inclusive-->
 		};
 		var count;
 		var celebrities = new Celebrity(30);
@@ -53,7 +53,7 @@
 			celebrities[25] = new Celebrity("Emma Watson", "04/15/1990", "images/emma-watson.jpg");
 			celebrities[26] = new Celebrity("Brad Pitt", "12/18/1963", "images/brad-pitt.jpg");
 			celebrities[27] = new Celebrity("Adam Sandler", "09/09/1966", "images/adam-sandler.jpg");
-			celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe");
+			celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe.jpg");
 			celebrities[29] = new Celebrity("Helena Bonham Carter", "05/26/1966", "images/helena-bonham-carter.jpg");
 			var celeb, name, bdate, image;
 			var score = 0;
@@ -63,32 +63,29 @@
 		
 		var btnSubmit_Click = function (){
 		
-		 //<!-- alert ("Round is " + round);  -->
 			if (round>10) {
-					//alert ("insde round and wager is " + user_wager);
+
 				celebrity_birthdate_guess = new Date (String(document.getElementById("usrAnswer").value));
-				if (document.getElementById("usrAnswer").value == "" || !isNaN(document.getElementById("usrAnswer").value) 
-					|| !Date.parse(document.getElementById("usrAnswer").value)) {
+				if (document.getElementById("usrAnswer").value == "" || !isNaN(document.getElementById("usrAnswer").value) || !Date.parse(document.getElementById("usrAnswer").value)) {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "Must enter date to continue! Format (MM/DD/YYYY)";
 				}
 				else {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "";
-					//alert ("usr date is " + celebrity_birthdate_guess + "------- actual date is " + bdate);
+
 					var diffDays = parseInt((bdate - celebrity_birthdate_guess) / (1000 * 60 * 60 * 24));
 					if (celebrity_birthdate_guess.toDateString() == bdate.toDateString() || (diffDays >= -730 && diffDays <= 730)) {
-						//alert("inside if");
+
 						score = parseInt(score) + parseInt(user_wager);
 					}
 					else {
-						//alert("inside else");
+
 						score = parseInt(score) - parseInt(user_wager);
 					}
 					var scoreDiv = document.getElementById("lblScore");
 					scoreDiv.innerHTML = "Your Final Score is = " + score;
 					var imageDisplayRef = document.getElementById("imgDisplay");
-					console.log = ("image display ref is " + imageDisplayRef);
 					imageDisplayRef.style.display = "none";
 					var usrAnswerRef = document.getElementById("userInput");
 					usrAnswerRef.style.display = "none";
@@ -100,10 +97,10 @@
 			}
 			else {
 				var celebrity_name_guess = document.getElementById("usrAnswer").value;
-				//check if correct and apply score
+
 				if (celebrity_name_guess.toLowerCase() == celeb.name.toLowerCase()) {
 					score += 10;
-				}//check if not valid throw error
+				}
 				if (celebrity_name_guess == "" || !isNaN(celebrity_name_guess)) {
 					var errorTxt = document.getElementById("errorLabel");
 					errorTxt.innerHTML = "Must enter name to continue!";
@@ -142,7 +139,6 @@
 								var scoreDiv = document.getElementById("lblFinalScore");
 								scoreDiv.style.display = "block";
 								scoreDiv.innerHTML = "Your current score is = " + score;
-								//<!-- finalRound(); -->
 							}
 						}
 					}
@@ -194,7 +190,7 @@
 					celebrities[25] = new Celebrity("Emma Watson", "04/15/1990", "images/emma-watson.jpg");
 					celebrities[26] = new Celebrity("Brad Pitt", "12/18/1963", "images/brad-pitt.jpg");
 					celebrities[27] = new Celebrity("Adam Sandler", "09/09/1966", "images/adam-sandler.jpg");
-					celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe");
+					celebrities[28] = new Celebrity("Daniel Radcliffe", "07/23/1989", "images/daniel-radcliffe.jpg");
 					celebrities[29] = new Celebrity("Helena Bonham Carter", "05/26/1966", "images/helena-bonham-carter.jpg");
 					var playAgainRef = document.getElementById("playAgain");
 					playAgainRef.style.display = "none";
@@ -230,7 +226,6 @@
 				user_wager = document.getElementById("usrWager").value;
                 if (parseInt(user_wager) > parseInt(score) || parseInt(user_wager) < 0 || isNaN(user_wager) || user_wager == "")
 				{
-					alert("inside if of wager");
 					var errorTxt = document.getElementById("errorLbl");
 					errorTxt.innerHTML = "Wager must be a positive number and equal to or below your current score";
 				}
@@ -242,6 +237,8 @@
 			round = 0;
 			score = 0;
 			user_wager = 0;
+			var errorTxt = document.getElementById("errorLbl");
+			errorTxt.innerHTML = "";
 			displayCelebrities();
 		}
 		
@@ -255,6 +252,8 @@
 			round = 0;
 			score = 0;
 			user_wager = 0;
+			var errorTxt = document.getElementById("errorLbl");
+			errorTxt.innerHTML = "";
 			var welcomeScreenRef = document.getElementById("welcomeScreen");
 			welcomeScreenRef.style.display = "block";
 			var gameScreenRef = document.getElementById("gameScreen");
@@ -337,24 +336,7 @@
         </div>
 
     <p style = "display: none;">
-        link to imdb page: http://www.imdb.com/list/ls074328260/
-        ** check if date is within 2 years or within 730 days
-        var d = new Date("12/12/2018");
-        var s = new Date ("05/08/2018");
-        var diffDays = parseInt((d - s) / (1000 * 60 * 60 * 24));
-        document.getElementById("demo").innerHTML = diffDays;
-
-        give them option to play again button
-
-        1)  make sure to set the input answers to lower case and compare it as lower case
-        2)  make sure answers are submitted and not left blank before clicking submit
-        3)  check to see if wager amount is not greater than total current score
-        4)  style the divs and inputs with CSS
-		
-		This lab was very interesting to do. I never had in-depth previous experience with JavaScript and this was very good learning experience.
-		Because it is very similar to java in terms of oop, it was straightforward. I had problem with event listeners, they were some what hard to get
-		used to. The only thing I disliked doing this lab was, finding celebrity pictures with almost the same size. But at the end, I really did learn a
-		good deal. 
+        Pictures were taken from IMDB page. Link to imdb page: http://www.imdb.com/list/ls074328260/
     </p>
 </body>
 <footer>
