@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Lab 4: Quiz Game</title>
+
+  <link rel="stylesheet" href="mystyle.css">
+  <script type="text/javascript">
+
+        <!--random number generator within specified values. Got the code form mozilla developer page-->
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; <!--The maximum is inclusive and the minimum is inclusive-->
+        };
+
+
+      function Quiz (id, question, answer, choices, type) {
+          this.id = id;
+          this.question = question;
+          this.answer = answer;
+          this.choices = choices;
+          this.type = type;
+      };
+
+      // function Result (question, choices, correctAnswer, userAnswer, score){
+      //
+      //     this.question = question;
+      //     this.choices = choices;
+      //     this.correctAnswer = correctAnswer;
+      //     this.userAnswer = userAnswer;
+      //     this.score = score;
+      // };
+
+      function getQuizQuestion(question, id){
+          return ((question[id].id + 1) + ". " + question[id].question);
+      };
+      function getQuizAnswer (question, id) {
+          return question[id].answer;
+      };
+      function getQuizType (question, id) {
+          return question[id].type;
+      };
+
+      function getChoices(question, id) {
+        // var choices = new Array(20);
+        // choices[0] = {choice1: "True", choice2: "False"};
+        // choices[1] = {choice1: "True", choice2: "False"};
+        // //var question = questions;
+        // console.log("inside getchoice and questions are " + questions.length);
+        //
+        //   for (var i = 0; i < choices.length; i++) {
+        //       if (id == i) {
+        //         console.log(choices[i]);
+        //         return choices[i];
+        //       }
+        //   }
+
+        console.log("inside getchoice and questions are " + question.length);
+
+          for (var i = 0; i < question.length; i++) {
+              if (id == question[i].id) {
+                console.log(question[i]);
+                return question[i].choices;
+              }
+          }
+      };
+
+
+  //alert("outside  windows load");
+        var questions = new Array (20);
+        questions[0] = new Quiz (0, "When dropped, cats land with their feet first", "True", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[1] = new Quiz (1, "Virtually all Las Vegas gambling casinos ensure that they have no clocks.", "True", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[2] = new Quiz (2, "Popeye’s nephews were called Peepeye, Poopeye, Pipeye and Pupeye.", "True", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[3] = new Quiz (3, "It wasn’t at Easter, but rather at Christmas, that Dutch navigator Jacob Roggeveen landed on Easter Island.", "False", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[4] = new Quiz (4, "The Hudson River (New York) and Hudson’s Bay (Canada) owe their names to two different explorers.", "False", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[5] = new Quiz (5, "Barack Obama was first elected president of the United States in what year?", "2008", "", "questionAndAnswer");
+        questions[6] = new Quiz (6, "How many teams are there in the American National Football League?", "32", "", "questionAndAnswer");
+        questions[7] = new Quiz (7, "The study of fossils other than anatomically modern humans is known as what?", "Paleontology", "", "questionAndAnswer");
+        questions[8] = new Quiz (8, "What is the official language of Greenland?", "Greenlandic", "", "questionAndAnswer");
+        questions[9] = new Quiz (9, "If you were in the city of Turin, what country would you be in?", "Italy", "", "questionAndAnswer");
+        questions[10] = new Quiz (10, "What is part of a database that holds only one type of information?", "Field", [{choice: "Report"}, {choice:"Field"}, {choice:"Record"}, {choice:"File"}], "multipleChoice");
+        questions[11] = new Quiz (11, "Galileo was an Italian astronomer who", "All of the above", [{choice: "developed the telescope"}, {choice: "discovered four satellites of Jupiter"}, {choice: "discovered that the movement of pendulum produces a regular time measurement"}, {choice: "All of the above"}], "multipleChoice");
+        questions[12] = new Quiz (12, "During World War II, when did Germany attack France?", "1940", [{choice: "1940"}, {choice: "1941"}, {choice: "1942"}, {choice: "1943"}], "multipleChoice");
+        questions[13] = new Quiz (13, "Durand Cup is associated with the game of", "Football", [{choice: "Cricket"}, {choice: "Football"}, {choice: "Hockey"}, {choice: "Volleyball"}], "multipleChoice");
+        questions[14] = new Quiz (14, "Fathometer is used to measure", "Ocean depth", [{choice: "Earthquakes"}, {choice: "Rainfall"}, {choice: "Ocean depth"}, {choice: "Sound intensity"}], "multipleChoice");
+        questions[15] = new Quiz (15, "The unit of current is", "ampere", [{choice: "ohm"}, {choice: "watt"}, {choice: "ampere"}, {choice: "None of the above"}], "multipleChoice");
+        questions[16] = new Quiz (16, "The Treaty of Versailles was signed in", "1919", [{choice: "1917"}, {choice: "1918"}, {choice: "1919"}, {choice: "1920"}], "multipleChoice");
+        questions[17] = new Quiz (17, "In which country would you find the Panama Canal?", "Panama", "", "questionAndAnswer");
+        questions[18] = new Quiz (18, "Gandhi lived in South Africa for over 20 years.", "False", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+        questions[19] = new Quiz (19, "After the Second World War, Korea was divided in two.", "True", [{choice: "True"}, {choice: "False"}], "trueOrFalse");
+
+        var results = new Array(20);
+      window.onload = function(){
+          var score = 0;
+          var roundScore = 0;
+          var round  = 1;
+          var question = questions;
+          var currentQuestion;
+          var currentQuestionChoice;
+          var selectedAnswer = "Was not provided";
+          var correctAnswer;
+
+          function startGame(){
+            var gameScreenRef = document.getElementById("gameScreen");
+				    gameScreenRef.style.display = "block";
+            //insert while loop that runs until round 20 is reached and then end the gameScreen
+            //everything below goes inside the loop
+            document.getElementById("btnNext").disabled = true;
+
+            document.getElementById("lblScore").innerHTML = "Score is " + score;
+            document.getElementById("lblRound").innerHTML = "Round is " + round;
+
+
+
+            //console.log(question)
+            //console.log("choices are " + question[1].choices);
+            //var questionRef = getChoices(question, 16);
+
+            //console.log(questionRef)
+
+            currentQuestion = getQuizQuestion(question, round-1);
+            document.getElementById("quizQuestion").innerHTML = currentQuestion;
+            currentQuestionChoice = getChoices(question, round-1);
+            var currentQuestionType = getQuizType(question, round-1);
+            var random_selection = getRandomIntInclusive(0,1);
+
+            if (currentQuestionType == "trueOrFalse") {
+
+              //document.getElementById("quizChoices").innerHTML = '<input type="radio" name="choices"  class="radioButtons" value="'+currentQuestionChoice.choice1 +'">' + currentQuestionChoice.choice1 + '<br>' +
+              //'<input type="radio" name="choices" class="radioButtons" value="'+currentQuestionChoice.choice2 +'">' + currentQuestionChoice.choice2 + '<br>';
+
+              // var selectNode = document.createElement("select");
+              //
+              // selectNode.setAttribute("name", "choices");
+
+              // for (var i =0; i < currentQuestionChoice.length; i++) {
+
+
+
+                    //create radio buttons
+                    // var radioNode = document.createElement("input");
+                    // radioNode.setAttribute("type", "radio");
+                    // radioNode.setAttribute("name", "choices");
+                    // radioNode.setAttribute("value", currentQuestionChoice[i].choice);
+                    // radioNode.setAttribute("class", "radioButtons");
+                    // var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
+                    // var breakNode = document.createElement("br");
+
+
+                    //radioNode.appendChild(currentQuestionChoice.choice1);
+                    // document.getElementById("quizChoices").appendChild(radioNode);
+                    // document.getElementById("quizChoices").appendChild(textNode);
+                    // document.getElementById("quizChoices").appendChild(breakNode);
+                    //end radio buttons
+
+                    //create select list
+                    // var optionNode = document.createElement("option");
+                    // optionNode.setAttribute("id", "options");
+                    // optionNode.setAttribute("value", currentQuestionChoice[i].choice);
+                    // var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
+                    // optionNode.appendChild(textNode);
+                    // selectNode.appendChild(optionNode);
+
+                    //document.getElementById("quizChoices").appendChild('<input type="radio" name="choices" class="radioButtons" value="'+currentQuestionChoice.choice2 +'">' + currentQuestionChoice.choice2 + '<br>');
+              // }//end loop
+
+                    //document.getElementById("quizChoices").appendChild(selectNode);
+                    //end select list
+
+                    createRandomFormControl(currentQuestionChoice, random_selection);
+
+            }
+            else if (currentQuestionType == "multipleChoice") {
+              //do something
+              createRandomFormControl(currentQuestionChoice, random_selection)
+            }
+            else if (currentQuestionType == "questionAndAnswer"){
+              //do something
+
+              //create a textbox userInput
+              var textBoxNode = document.createElement("input");
+              textBoxNode.setAttribute("type", "text");
+            //  textBoxNode.setAttribute("name", "userInput");
+              textBoxNode.setAttribute("id", "userInput");
+
+              document.getElementById("quizChoices").appendChild(textBoxNode);
+            }
+
+
+
+
+          };
+
+          function createRandomFormControl(currentQuestionChoice, number){
+            if (number == 0) {
+              //do radio radioButtons
+              for (var i =0; i < currentQuestionChoice.length; i++) {
+
+
+
+                    //create radio buttons
+                    var radioNode = document.createElement("input");
+                    radioNode.setAttribute("type", "radio");
+                    radioNode.setAttribute("name", "choices");
+                    radioNode.setAttribute("value", currentQuestionChoice[i].choice);
+                    radioNode.setAttribute("class", "radioButtons");
+                    var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
+                    var breakNode = document.createElement("br");
+
+
+
+                    document.getElementById("quizChoices").appendChild(radioNode);
+                    document.getElementById("quizChoices").appendChild(textNode);
+                    document.getElementById("quizChoices").appendChild(breakNode);
+                    //end radio buttons
+            }
+          }
+            else {
+              //do select box
+              var selectNode = document.createElement("select");
+              selectNode.setAttribute("name", "choices");
+              for (var i =0; i < currentQuestionChoice.length; i++) {
+                //create select list
+                var optionNode = document.createElement("option");
+                optionNode.setAttribute("id", "options");
+                optionNode.setAttribute("value", currentQuestionChoice[i].choice);
+                var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
+                optionNode.appendChild(textNode);
+                selectNode.appendChild(optionNode);
+              }
+              document.getElementById("quizChoices").appendChild(selectNode);
+
+            }
+          }
+
+          var btnStartGame_Click = function () {
+                //alert("Inside btnstart game fnction");
+          			var welcomeScreenRef = document.getElementById("welcomeScreen");
+          			welcomeScreenRef.style.display = "none";
+
+          			startGame();
+  		    };
+
+
+
+          var btnSubmit_Click = function (){
+            var radio;
+            if (document.getElementById('options') != null) {
+               console.log("created option element");
+                radio = document.getElementsByTagName('option');
+            }
+            else {
+
+
+                console.log("created input element");
+                  radio = document.getElementsByTagName('input');
+            }
+
+            var isSelected = false;
+
+
+                  for (var i = 0; i < radio.length; i++) {
+                    console.log(radio.length);
+                      if (radio[i].type === 'radio' && radio[i].checked) {
+                        // get value, set checked flag or do whatever you need to
+                        selectedAnswer = radio[i].value;
+                        isSelected = true;
+                      }
+                      if (radio[i].type === 'text' && radio[i].value != "") {
+                          selectedAnswer = document.getElementById("userInput").value;
+                          isSelected = true;
+                      }
+                      if (radio[i].id==="options" && radio[i].selected) {
+                        console.log("insde if option")
+                          selectedAnswer = radio[i].value;
+                          isSelected = true;
+                      }
+                  }
+
+            if (isSelected == true) {
+                  correctAnswer = getQuizAnswer(question, round-1);
+                  if (selectedAnswer == correctAnswer){
+                      score += 1;
+                      roundScore = 1;
+                      document.getElementById("quizAnswerOutput").innerHTML = "Correct! The answer is " + correctAnswer;
+                      document.getElementById("lblScore").innerHTML = "Score is " + score;
+                  }
+                  else {
+                    if (score > 0) {
+                        score-=1;
+                        roundScore = -1;
+                    }
+
+                    document.getElementById("quizAnswerOutput").innerHTML = "Wrong! The correct answer is " + correctAnswer;
+                    document.getElementById("lblScore").innerHTML = "Score is " + score;
+                  }
+                  document.getElementById("btnSubmit").disabled = true;
+                  document.getElementById("btnNext").disabled = false;
+            }
+            else {
+              document.getElementById("quizAnswerOutput").innerHTML = "You must select/enter an answer!";
+            }
+
+          }
+          function btnNext_Click () {
+            //delete the current nodes or overrite them
+
+
+            var questionDiv = document.getElementById("quizQuestion");
+            questionDiv.innerHTML = "";
+            var choicesDiv = document.getElementById("quizChoices");
+            choicesDiv.innerHTML = "";
+            var answersDiv = document.getElementById("quizAnswerOutput");
+            answersDiv.innerHTML = "";
+            document.getElementById("lblRound").innerHTML="";
+
+            if (round == 20) {
+              //display results to user
+              var buttonNext = document.getElementById("btnNext");
+              buttonNext.style.display = "none";
+              var displayResults = document.getElementById("errorLabel");
+
+              //display the results
+              for (var i = 0; i < results.length; i++) {
+
+                var result = document.createTextNode(results[i]);
+                var breakNode = document.createElement("br");
+                displayResults.appendChild(result);
+                displayResults.appendChild(breakNode);
+              }
+
+            }
+            else {
+              //add the question choices and answer and score here to an Array
+
+              results[round-1] = currentQuestion + " \n" + getToStringChoices(currentQuestionChoice) + " \nCorrect answer was: " + getQuizAnswer(question, round-1) + " \nYour answer was: " + selectedAnswer + "\nYour score for that round was: " +  roundScore;
+
+
+              selectedAnswer = "";
+              round +=1;
+              roundScore = 0;
+              document.getElementById("btnSubmit").disabled = false;
+              startGame();
+            }
+          };
+
+          function getToStringChoices(questionChoices){
+            var choices = "Choices were (";
+            for (var i =0; i < questionChoices.length; i++) {
+                choices += questionChoices[i].choice + " | ";
+            }
+            choices += ")"
+            return choices;
+          }
+
+
+
+
+          document.getElementById("btnStartGame").onclick = btnStartGame_Click;
+          document.getElementById("btnSubmit").onclick = btnSubmit_Click;
+          document.getElementById("btnNext").onclick = btnNext_Click;
+      };
+  </script>
+</head>
+
+<body>
+  <ul class="nav">
+          <li id="title">CIS 3344 Spring 2018</li>
+
+          <li><a class="navMenu" href="index.html">Home</a></li>
+  </ul>
+  <div id="header">
+    <h1>Quiz Game</h1>
+</div>
+<div id="content">
+
+
+    <div id="welcomeScreen">
+        <h2>Welcome to Celebrity Game!</h2>
+        <h3>This game has 10 rounds and each round is worth 10 points</h3>
+        <h3>You will see your score in every round</h3>
+        <h3>There is a final round, where you can wager your earned score</h3>
+        <h3></h3>
+        <h3>In order to play the game, please follow the instructions below!</h3>
+        <h3>Instructions:</h3>
+        <h3>1) When you see the picture of celebrity, type in their full name including
+        dots in the text below (i.e. "John Doe Sr.")</h3>
+        <h3>2) Click Submit</h3>
+        <h3>Ready to play the game? Then hit <strong>PLAY</strong> below</h3>
+        <button type="button" id="btnStartGame">PLAY</button>
+
+
+    </div>
+    <div id="gameScreen">
+        <div id="lblScore"></div>
+        <div id="lblRound">
+        </div>
+
+        <div id="quizQuestion"></div>
+        <div id="quizChoices"> </div>
+        <div id="quizAnswerOutput"></div>
+        <!-- <div id="userInput">
+            <input id="usrAnswer" type="text" required />
+
+        </div> -->
+        <div id="errorLabel"></div>
+        <div id="userSubmitButton">
+            <button type="button" id="btnSubmit">Submit</button>
+        </div>
+        <div id="nextQuestionButton">
+            <button type="button" id="btnNext">Next</button>
+        </div>
+        <div id="playAgain" style="display: none;">
+            <button type="button" id="btnPlayAgain">Play Again</button>
+            <button type="button" id="btnMainMenu">No</button>
+        </div>
+
+    </div>
+    <!-- <div id="finalRound" style="display: none;">
+<div id="lblFinalScore"></div>
+        <h2>FINAL ROUND</h2>
+        <h3>This is the final round of the game. Instead of guessing the celebrities name,
+you will guess their birthdate which has to be within 2 years. Please follow the instructions below.</h3>
+        <h3>INSTRUCTIONS:</h3>
+        <h3>1) Enter how much you are willing to wager from your current total in the text below.</h3>
+        <input id="usrWager" type="text" /> <span id="errorLbl"></span>
+        <br>
+        <h3>2) Enter celebrity's birth date in the following format: MM/DD/YYYY (i.e. 01/25/1966)</h3>
+        <h3>3) Click Submit</h3>
+        <h3>Ready? Then click <strong>PLAY</strong> below to start the final round</h3>
+        <button type="button" id="btnFinalRound">Play</button>
+    </div> -->
+</div>
+
+</body>
+<footer>
+  <p>Created by Bobur Zakhidov (bobur@temple.edu)</p>
+</footer>
+</html>
