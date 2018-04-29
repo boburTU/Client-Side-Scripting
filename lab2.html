@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <title>Labs Page</title>
+
+</head>
+<body>
+    <ul class="nav">
+        <li id="title">CIS 3344 Spring 2018</li>
+
+        <li ><a class="navMenu" href="index.html">Home</a></li>
+        <li ><a class="navMenu" href="#landingPage">About</a></li>
+        <li ><a class="navMenu" href="#infoPage">Info</a></li>
+        <li ><a class="navMenu" href="#formPage">Form</a></li>
+        <li ><a class="navMenu" href="#galleryPage">Gallery</a></li>
+
+    </ul>
+    <div id="landingPage">
+
+
+        <div id="row-1">
+            <img id="ufc-logo" src="mypics/ufc_logo.png" alt="UFC LOGO"></img>
+            <p>Ultimate Fighting Championship</p>
+        </div>
+        <div id="row-1-subheader">Ultimate Fighting Championship</div>
+
+        <div id="row-2">
+            <p>
+                The Ultimate Fighting Championship (UFC) is an American mixed martial arts organization based in Las Vegas, Nevada, that is owned and operated by parent company WME–IMG.
+                It is the largest MMA promotion in the world and features the top-ranked fighters of the sport. Based in the United States, the UFC produces events worldwide that showcase
+                eleven weight divisions and abide by the Unified Rules of Mixed Martial Arts.
+            </p>
+            <p>
+                As of 2017, the UFC has held over 400 events. Dana White serves as the president of the UFC. He has held that position since 2001; while under the leadership of Dana White the
+                UFC has grown into a globally popular multibillion-dollar enterprise. The UFC's main market rival is Bellator MMA, which airs on Paramount Network.
+                On network TV, UFC content is available on Fox, Fox Sports 1, and Fox Sports 2 in the U.S., on ESPN in the Caribbean, on BT Sport in the United Kingdom and Ireland, as well as
+                in 150 countries and 22 different languages worldwide.
+            </p>
+
+        </div>
+
+        <div class="clear"></div> <!-- used to stop floating behavior -->
+
+
+
+    </div>
+
+    <div id="infoPage">
+        <h2>Top 3 Pound For Pound Fighters of UFC</h2>
+        <div class="col">
+            <p class="rank-header">#1 Rank - Demetrious Johnson</p>
+            <img id="demetrious-johnson" src="mypics/demetrious.png" alt="Demetrious Johnson"></img>
+            <p>
+                Demetrious Johnson is from Madisonville, Kentucky, USA and is currently the best pound for pound fighter in the UFC.
+                Nicknamed the "Mighty Mouse" and has a fighting record of 27 wins, 2 losses and 1 draw. He is the first and
+                the current Flyweight Champion of UFC and has defended his title 11 times. He is known for his speed, conditioning
+                & technique inside the octagon. He stands 5 foot 3 inches and weighs 125 pounds.
+            </p>
+        </div>
+        <div class="col">
+            <p class="rank-header"> #2 Rank  - Conor McGregor</p>
+            <img id="conor-mcgregor" src="mypics/mcgregor.png" alt="Conor McGregor"></img>
+            <p>
+                Connor McGregor is from Dublin, Ireland and is currently the 2nd best pound for pound fighter in the UFC.
+                Nicknamed the "The Notorious" and has a fighting record of 21 wins and 3 losses. He is currently the Lightweight Champion
+                of UFC and is a former Featherweight Champion. He is the only fighter to be the champion in two UFC divisions simultaneously.
+                He is known for his speed, technique and knockout power inside the octagon and as a master trash talker outside of the octagon.
+                He stands 5 foot 8 inches and weighs 155 pounds.
+            </p>
+        </div>
+        <div class="col">
+            <p class="rank-header">#3 Rank - Daniel Cormier</p>
+            <img id="daniel-cormier" src="mypics/cormier.png" alt="Daniel Cormier"></img>
+            <p>
+                Daniel Cormier is from Lafayette, Lousiana, USA and is currenly the 3rd best pound for pound fighter in the UFC.
+                Nicknamed the "DC" and has a fighting record of 20 wins, 1 losses and 1 no contest. He is currently the Light Heavyweight
+                Champion of UFC and has defended the title 3 times. He is well known for his wrestling inside the octagon and is considered one
+                of the greatest mixed martial artists of all time. He stands 5 foot 11 inches and weighs 205 pounds.
+            </p>
+        </div>
+        <div class="clear"></div> <!-- used to stop floating behavior -->
+    </div>
+    <div id="formPage">
+        <h2>Survey Submission</h2>
+
+        <form method="post" action="http://www.temple.edu/cgi-bin/mail?bobur@temple.edu">
+
+            <table id="formTable">
+
+                <tr>
+                    <td><label for="Name"> Please enter your name: </label></td>
+                    <td><input name="Name" type="text" required /></td>
+                    <td><label for="Email"> Please enter your email:  </label></td>
+                    <td><input name="Email" type="email" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="Phone"> Please enter your phone number:  </label></td>
+                    <td><input name="Phone" type="tel" /></td>
+
+                    <td><label for="18YearsAndOlder?">Are you 18 years or older? </label></td>
+                    <td>
+                        <select name="18YearsAndOlder?" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td><label for="KnowledgeOfMMA">Please rate your knowledge of MMA in general: </label></td>
+                    <td>
+                        <input type="radio" name="KnowledgeOfMMA" value="None"> None<br>
+
+                        <input type="radio" name="KnowledgeOfMMA" value="Basic"> Basic
+                        <br>
+                        <input type="radio" name="KnowledgeOfMMA" value="Advanced"> Advanced<br>
+
+                        <input type="radio" name="KnowledgeOfMMA" value="Pro"> Pro
+                    </td>
+                    <td><label for="UFCFan?">Are you a fan of UFC? </label></td>
+                    <td>
+                        <select name="UFCFan?" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="FavoriteFighter(s)">Which UFC fighters do you like the most? Select all that apply:</label></td>
+                    <td>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="McGregor" /> McGregor<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Cormier" /> Cormier<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Miocic" /> Miocic <br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Johnson" /> Johnson<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Holloway" /> Holloway<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Woodley" /> Woodley <br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Whittaker" /> Whittaker<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Aldo" /> Aldo<br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Lesnar" /> Lesnar <br>
+                        <input type="checkbox" name="FavoriteFighter(s)" value="Jones" /> Jones
+                    </td>
+                    <td>
+                        <label for="MMASkills">Check all the martial arts skills that you know:</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="MMASkills" value="KARATE" /> Karate <br>
+                        <input type="checkbox" name="MMASkills" value="TAEKWONDO" /> Taekwondo<br>
+                        <input type="checkbox" name="MMASkills" value="BOXING" /> Boxing <br>
+                        <input type="checkbox" name="MMASkills" value="MMA" /> MMA <br>
+                        <input type="checkbox" name="MMASkills" value="MUAY THAI" /> Muay Thai<br>
+                        <input type="checkbox" name="MMASkills" value="WRESTLING" /> Wrestling <br>
+                        <input type="checkbox" name="MMASkills" value="AIKIDO" /> Aikido <br>
+                        <input type="checkbox" name="MMASkills" value="HAPKIDO" /> Hapkido <br>
+                        <input type="checkbox" name="MMASkills" value="None" /> None
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="WillFightInOctagon?">Would you go into octagon to fight one of the UFC fighters if you had the chance? </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="WillFightInOctagon?" value="Not in this life time"> Not in this life time
+                        <br>
+                        <input type="radio" name="WillFightInOctagon?" value="No"> No
+                        <br>
+                        <input type="radio" name="WillFightInOctagon?" value="Maybe"> Maybe
+                        <br>
+                        <input type="radio" name="WillFightInOctagon?" value="Yes"> Yes
+
+                    </td>
+
+                    <td>
+                        <label for="FutureUFCFan?">Now that you learned something about UFC, would you be interested in watching UFC? </label>
+                    </td>
+                    <td>
+                        <select name="FutureUFCFan?" required>
+                            <option value="">Select</option>
+                            <option value="Nope">Nope</option>
+                            <option value="Maybe">Maybe</option>
+                            <option value="Maybe">Definetly</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Comments">Please leave a additional comment below</label>
+                    </td>
+                    <td><textarea name="Comments" ></textarea></td>
+                    <td><input type="submit" id ="submitbtn" value="Submit"></td>
+                </tr>
+                <!--
+                <label for="Name"> Please enter your name: </label>
+                <input name="Name" type="text" required />
+                <br>
+                <label for="Email"> Please enter your email:  </label>
+                <input name="Email" type="email" required />
+                <br>
+                <label for="Phone"> Please enter your phone number:  </label>
+                <input name="Phone" type="tel" />
+                <br>
+                <label for="18YearsAndOlder?">Are you 18 years or older? </label>
+                <br>
+                <select name="18YearsAndOlder?" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <br>
+                <label for="KnowledgeOfMMA">Please rate your knowledge of MMA in general: </label>
+                <br>
+                <input type="radio" name="KnowledgeOfMMA" value="None"> None
+                <br>
+                <input type="radio" name="KnowledgeOfMMA" value="Basic"> Basic
+                <br>
+                <input type="radio" name="KnowledgeOfMMA" value="Advanced"> Advanced
+                <br>
+                <input type="radio" name="KnowledgeOfMMA" value="Pro"> Pro
+                <br>
+                <label for="UFCFan?">Are you a fan of UFC? </label>
+                <br>
+                <select name="UFCFan?" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <br>
+
+                <label for="FavoriteFighter(s)">Which UFC fighters do you like the most? Select all that apply:</label>
+                <input type="checkbox" name="FavoriteFighter(s)" value="McGregor" /> McGregor
+                <input type="checkbox" name="FavoriteFighter(s)" value="Cormier" /> Cormier
+                <input type="checkbox" name="FavoriteFighter(s)" value="Miocic" /> Miocic
+                <input type="checkbox" name="FavoriteFighter(s)" value="Johnson" /> Johnson
+                <input type="checkbox" name="FavoriteFighter(s)" value="Holloway" /> Holloway
+                <input type="checkbox" name="FavoriteFighter(s)" value="Woodley" /> Woodley
+                <input type="checkbox" name="FavoriteFighter(s)" value="Whittaker" /> Whittaker
+                <input type="checkbox" name="FavoriteFighter(s)" value="Aldo" /> Aldo
+                <input type="checkbox" name="FavoriteFighter(s)" value="Lesnar" /> Lesnar
+                <input type="checkbox" name="FavoriteFighter(s)" value="Jones" /> Jones
+                <br>
+
+
+                <label for="MMASkills">Check all the martial arts skills that you know:</label>
+                <input type="checkbox" name="MMASkills" value="KARATE" /> Karate
+                <input type="checkbox" name="MMASkills" value="TAEKWONDO" /> Taekwondo
+                <input type="checkbox" name="MMASkills" value="BOXING" /> Boxing
+                <input type="checkbox" name="MMASkills" value="MMA" /> MMA
+                <input type="checkbox" name="MMASkills" value="MUAY THAI" /> Muay Thai
+                <input type="checkbox" name="MMASkills" value="WRESTLING" /> Wrestling
+                <input type="checkbox" name="MMASkills" value="AIKIDO" /> Aikido
+                <input type="checkbox" name="MMASkills" value="HAPKIDO" /> Hapkido
+                <input type="checkbox" name="MMASkills" value="None" /> None
+
+                <br>
+                <label for="WillFightInOctagon?">Would you go into octagon to fight one of the UFC fighters if you had the chance? </label>
+                <br>
+                <input type="radio" name="WillFightInOctagon?" value="Not in this life time"> Not in this life time
+                <br>
+                <input type="radio" name="WillFightInOctagon?" value="No"> No
+                <br>
+                <input type="radio" name="WillFightInOctagon?" value="Maybe"> Maybe
+                <br>
+                <input type="radio" name="WillFightInOctagon?" value="Yes"> Yes
+                <br>
+                <label for="FutureUFCFan?">Now that you learned something about UFC, would you be interested in watching UFC? </label>
+                <br>
+                <select name="FutureUFCFan?" required>
+                    <option value="">Select</option>
+                    <option value="Nope">Nope</option>
+                    <option value="Maybe">Maybe</option>
+                    <option value="Maybe">Definetly</option>
+                </select>
+                <br>
+
+                <label for="Comments">Please leave a additional comment below</label>
+                <br>
+                <textarea name="Comments" rows="20" cols="60"></textarea>
+
+                <br>
+                <input type="submit" value="Submit">
+                    -->
+            </table>
+
+        </form>
+
+
+    </div>
+    <div class="clear"></div> <!-- used to stop floating behavior -->
+    <div id="galleryPage">
+
+        <h2>UFC Title Holders</h2>
+        <p>Current UFC champions by division</p>
+
+        <div id="gallery-row1">
+            <div class="profile">
+                <h4>Featherweight Champion</h4>
+                <img id="max-holloway" src="mypics/holloway.png" alt="Max Holloway"></img>
+                <br>Max Holloway
+            </div>
+            <div class="profile">
+                <h4>Lightweight Champion</h4>
+                <img id="conor-mcgregor" src="mypics/mcgregor.png" alt="Conor McGregor"></img>
+                <br>Conor McGregor
+            </div>
+            <div class="profile">
+                <h4>Welterweight Champion</h4>
+                <img id="tyron-woodley" src="mypics/woodley.png" alt="Tyron Woodley"></img>
+                <br>Tyron Woodley
+            </div>
+
+            <div class="clear"></div> <!-- used to stop floating behavior -->
+        </div>
+        <div id="gallery-row2">
+
+            <div class="profile">
+                <h4>Middleweight Champion</h4>
+                <img id="robert-whittaker" src="mypics/whittaker.png" alt="Robert Whittaker"></img>
+                <br>Robert Whittaker
+            </div>
+
+            <div class="profile">
+                <h4>Light Heavyweight Champion</h4>
+                <img id="daniel-cormier" src="mypics/cormier.png" alt="Daniel Cormier"></img>
+                <br>Daniel Cormier
+            </div>
+
+            <div class="profile">
+                <h4>Heavyweight Champion</h4>
+                <img id="stipe-miocic" src="mypics/stipe.png" alt="Stipe Miocic"></img>
+                <br>Stipe Miocic
+            </div>
+        </div>
+
+        <div class="clear"></div> <!-- used to stop floating behavior -->
+    </div>
+
+
+</body>
+<footer>
+    <p>© UFC. Created by Bobur Zakhidov (bobur@temple.edu)</p>
+</footer>
+</html>

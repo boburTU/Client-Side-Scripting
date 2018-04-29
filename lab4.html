@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -8,11 +8,11 @@
   <link rel="stylesheet" href="mystyle.css">
   <script type="text/javascript">
 
-        <!--random number generator within specified values. Got the code form mozilla developer page-->
+        //random number generator within specified values. Got the code form mozilla developer page
         function getRandomIntInclusive(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min; <!--The maximum is inclusive and the minimum is inclusive-->
+            return Math.floor(Math.random() * (max - min + 1)) + min; //-The maximum is inclusive and the minimum is inclusive
         };
 
 
@@ -24,14 +24,6 @@
           this.type = type;
       };
 
-      // function Result (question, choices, correctAnswer, userAnswer, score){
-      //
-      //     this.question = question;
-      //     this.choices = choices;
-      //     this.correctAnswer = correctAnswer;
-      //     this.userAnswer = userAnswer;
-      //     this.score = score;
-      // };
 
       function getQuizQuestion(question, id){
           return ((question[id].id + 1) + ". " + question[id].question);
@@ -44,18 +36,7 @@
       };
 
       function getChoices(question, id) {
-        // var choices = new Array(20);
-        // choices[0] = {choice1: "True", choice2: "False"};
-        // choices[1] = {choice1: "True", choice2: "False"};
-        // //var question = questions;
-        // console.log("inside getchoice and questions are " + questions.length);
-        //
-        //   for (var i = 0; i < choices.length; i++) {
-        //       if (id == i) {
-        //         console.log(choices[i]);
-        //         return choices[i];
-        //       }
-        //   }
+
 
         console.log("inside getchoice and questions are " + question.length);
 
@@ -103,20 +84,18 @@
           var correctAnswer;
 
           function startGame(){
-            var gameScreenRef = document.getElementById("gameScreen");
-				    gameScreenRef.style.display = "block";
+              var gameScreenRef = document.getElementById("gamePlayScreen");
+              gameScreenRef.style.display = "block";
+              
             //insert while loop that runs until round 20 is reached and then end the gameScreen
             //everything below goes inside the loop
             document.getElementById("btnNext").disabled = true;
 
-            document.getElementById("lblScore").innerHTML = "Score is " + score;
+            document.getElementById("lblRoundScore").innerHTML = "Score is " + score;
             document.getElementById("lblRound").innerHTML = "Round is " + round;
 
 
 
-            //console.log(question)
-            //console.log("choices are " + question[1].choices);
-            //var questionRef = getChoices(question, 16);
 
             //console.log(questionRef)
 
@@ -128,46 +107,6 @@
 
             if (currentQuestionType == "trueOrFalse") {
 
-              //document.getElementById("quizChoices").innerHTML = '<input type="radio" name="choices"  class="radioButtons" value="'+currentQuestionChoice.choice1 +'">' + currentQuestionChoice.choice1 + '<br>' +
-              //'<input type="radio" name="choices" class="radioButtons" value="'+currentQuestionChoice.choice2 +'">' + currentQuestionChoice.choice2 + '<br>';
-
-              // var selectNode = document.createElement("select");
-              //
-              // selectNode.setAttribute("name", "choices");
-
-              // for (var i =0; i < currentQuestionChoice.length; i++) {
-
-
-
-                    //create radio buttons
-                    // var radioNode = document.createElement("input");
-                    // radioNode.setAttribute("type", "radio");
-                    // radioNode.setAttribute("name", "choices");
-                    // radioNode.setAttribute("value", currentQuestionChoice[i].choice);
-                    // radioNode.setAttribute("class", "radioButtons");
-                    // var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
-                    // var breakNode = document.createElement("br");
-
-
-                    //radioNode.appendChild(currentQuestionChoice.choice1);
-                    // document.getElementById("quizChoices").appendChild(radioNode);
-                    // document.getElementById("quizChoices").appendChild(textNode);
-                    // document.getElementById("quizChoices").appendChild(breakNode);
-                    //end radio buttons
-
-                    //create select list
-                    // var optionNode = document.createElement("option");
-                    // optionNode.setAttribute("id", "options");
-                    // optionNode.setAttribute("value", currentQuestionChoice[i].choice);
-                    // var textNode = document.createTextNode(currentQuestionChoice[i].choice.toString());
-                    // optionNode.appendChild(textNode);
-                    // selectNode.appendChild(optionNode);
-
-                    //document.getElementById("quizChoices").appendChild('<input type="radio" name="choices" class="radioButtons" value="'+currentQuestionChoice.choice2 +'">' + currentQuestionChoice.choice2 + '<br>');
-              // }//end loop
-
-                    //document.getElementById("quizChoices").appendChild(selectNode);
-                    //end select list
 
                     createRandomFormControl(currentQuestionChoice, random_selection);
 
@@ -235,9 +174,9 @@
             }
           }
 
-          var btnStartGame_Click = function () {
+          var btnBeginGame_Click = function () {
                 //alert("Inside btnstart game fnction");
-          			var welcomeScreenRef = document.getElementById("welcomeScreen");
+              var welcomeScreenRef = document.getElementById("IntroScreen");
           			welcomeScreenRef.style.display = "none";
 
           			startGame();
@@ -285,7 +224,7 @@
                       score += 1;
                       roundScore = 1;
                       document.getElementById("quizAnswerOutput").innerHTML = "Correct! The answer is " + correctAnswer;
-                      document.getElementById("lblScore").innerHTML = "Score is " + score;
+                      document.getElementById("lblRoundScore").innerHTML = "Score is " + score;
                   }
                   else {
                     if (score > 0) {
@@ -294,7 +233,7 @@
                     }
 
                     document.getElementById("quizAnswerOutput").innerHTML = "Wrong! The correct answer is " + correctAnswer;
-                    document.getElementById("lblScore").innerHTML = "Score is " + score;
+                    document.getElementById("lblRoundScore").innerHTML = "Score is " + score;
                   }
                   document.getElementById("btnSubmit").disabled = true;
                   document.getElementById("btnNext").disabled = false;
@@ -320,7 +259,9 @@
               //display results to user
               var buttonNext = document.getElementById("btnNext");
               buttonNext.style.display = "none";
-              var displayResults = document.getElementById("errorLabel");
+              document.getElementById("btnSubmit").style.display = "none";
+              var displayResults = document.getElementById("resultsDisplay");
+              displayResults.style.display = "block";
 
               //display the results
               for (var i = 0; i < results.length; i++) {
@@ -358,7 +299,7 @@
 
 
 
-          document.getElementById("btnStartGame").onclick = btnStartGame_Click;
+          document.getElementById("btnBeginGame").onclick = btnBeginGame_Click;
           document.getElementById("btnSubmit").onclick = btnSubmit_Click;
           document.getElementById("btnNext").onclick = btnNext_Click;
       };
@@ -374,65 +315,50 @@
   <div id="header">
     <h1>Quiz Game</h1>
 </div>
-<div id="content">
 
 
-    <div id="welcomeScreen">
-        <h2>Welcome to Celebrity Game!</h2>
-        <h3>This game has 10 rounds and each round is worth 10 points</h3>
-        <h3>You will see your score in every round</h3>
-        <h3>There is a final round, where you can wager your earned score</h3>
-        <h3></h3>
-        <h3>In order to play the game, please follow the instructions below!</h3>
-        <h3>Instructions:</h3>
-        <h3>1) When you see the picture of celebrity, type in their full name including
-        dots in the text below (i.e. "John Doe Sr.")</h3>
-        <h3>2) Click Submit</h3>
-        <h3>Ready to play the game? Then hit <strong>PLAY</strong> below</h3>
-        <button type="button" id="btnStartGame">PLAY</button>
+    <div id="containerLab4">
+        <div id="IntroScreen">
+            <h2>Welcome to Quiz Game!</h2>
+            <h3>This game has 20 rounds and each round is worth 1 point</h3>
+            <h3>You will see your score in every round</h3>
+            <h3></h3>
+            <h3>In order to play the game, please follow the instructions below!</h3>
+            <h3>Instructions:</h3>
+            <h3>1) When you see the question choices, select or type in the answer</h3>
+            <h3>2) Click Submit</h3>
+            <h3>3) Then click "Next" to go the next question</h3>
+            <h3>Ready to play the game? Then hit <strong>PLAY</strong> below</h3>
+            <button type="button" id="btnBeginGame">PLAY</button>
 
+
+        </div>
+        <div id="gamePlayScreen" style="display: none;">
+            <span id="lblRoundScore"></span>
+            <span id="lblRound">
+            </span>
+
+            <div id="quizQuestion"></div>
+            <div id="quizChoices"> </div>
+            <div id="quizAnswerOutput"></div>
+            
+            
+                <button type="button" id="btnSubmit">Submit</button>
+            
+            
+                <button type="button" id="btnNext">Next >></button>
+           
+            <div id="playAgain" style="display: none;">
+                <button type="button" id="btnPlayAgain">Play Again</button>
+                <button type="button" id="btnMainMenu">No</button>
+            </div>
+
+        </div>
+
+        <div id="resultsDisplay" style="display: none;"></div>
+        
 
     </div>
-    <div id="gameScreen">
-        <div id="lblScore"></div>
-        <div id="lblRound">
-        </div>
-
-        <div id="quizQuestion"></div>
-        <div id="quizChoices"> </div>
-        <div id="quizAnswerOutput"></div>
-        <!-- <div id="userInput">
-            <input id="usrAnswer" type="text" required />
-
-        </div> -->
-        <div id="errorLabel"></div>
-        <div id="userSubmitButton">
-            <button type="button" id="btnSubmit">Submit</button>
-        </div>
-        <div id="nextQuestionButton">
-            <button type="button" id="btnNext">Next</button>
-        </div>
-        <div id="playAgain" style="display: none;">
-            <button type="button" id="btnPlayAgain">Play Again</button>
-            <button type="button" id="btnMainMenu">No</button>
-        </div>
-
-    </div>
-    <!-- <div id="finalRound" style="display: none;">
-<div id="lblFinalScore"></div>
-        <h2>FINAL ROUND</h2>
-        <h3>This is the final round of the game. Instead of guessing the celebrities name,
-you will guess their birthdate which has to be within 2 years. Please follow the instructions below.</h3>
-        <h3>INSTRUCTIONS:</h3>
-        <h3>1) Enter how much you are willing to wager from your current total in the text below.</h3>
-        <input id="usrWager" type="text" /> <span id="errorLbl"></span>
-        <br>
-        <h3>2) Enter celebrity's birth date in the following format: MM/DD/YYYY (i.e. 01/25/1966)</h3>
-        <h3>3) Click Submit</h3>
-        <h3>Ready? Then click <strong>PLAY</strong> below to start the final round</h3>
-        <button type="button" id="btnFinalRound">Play</button>
-    </div> -->
-</div>
 
 </body>
 <footer>

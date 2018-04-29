@@ -1,0 +1,547 @@
+ body {
+			margin: 0;
+			padding: 0;
+			font-family: Helvetica;
+			margin-left: 10px;
+			margin-right: 10px;
+            background-color:lightgray;
+            /* back color wont work with  #E8EAED */
+		}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			background-color: #A41E35;
+			overflow: hidden;
+			width: 100%;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+
+			
+			
+		}
+
+		#title {
+			padding-top: 10px;
+			padding-left: 10px;
+            margin-right: 10px;
+			font-size: 20px;
+			color: #FFFFFF;
+		}
+		li {
+			float: left;
+		}
+		li a {
+			display: inline-block;
+			color: #FFFFFF;
+			text-align: center;
+			padding: 10px 26px;
+			text-decoration: none;
+		}
+		
+		li a:hover {
+			background-color: #FFFFFF;
+			color: black;
+		}
+		#header {
+			margin-top: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			text-align: center;
+			background-color: #FFFFFF;
+			color: #A41E35;
+			
+		}
+
+		#index-row {
+			background-color: #B64B5D;
+			color: #FFFFFF;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			overflow: hidden; /* this is so that when screen re-szied, all elements will be inside div, no overflow */
+			
+		}
+		#left-side {
+			width: 65%;
+			float:left;
+			padding-top: 50px;
+			padding-left: 50px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			
+		}
+		#right-side {
+			width: 25%;
+			float: left;
+			padding-left: 50px;
+			padding-right: 10px;
+			padding-top: 15px;
+			padding-bottom: 10px;
+			
+		}
+		#temple-logo {
+			width: 100%;
+			height: 100%;
+			min-width: 300px;
+			min-height: 300px;
+		}
+		
+		.clear {
+			clear: both;
+			
+		}
+		footer {
+			
+			padding-top: 6px;
+			padding-bottom: 6px;
+			background-color: black;
+			color: #FFFFFF;
+			text-align: center;
+			font-family: Helvetica;
+		}
+.rows {
+    background-color: #B64B5D;
+			color: #FFFFFF;
+			padding-top: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			margin-top: 10px;
+			margin-bottom:10px;
+}
+		
+		.column {
+			width: 30%;
+			float: left;
+			padding-left: 20px;
+			padding-right: 20px;
+			box-sizing: border-box;
+		}
+
+		#row-about-me {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			background-color: #B64B5D;
+			color: #FFFFFF;
+			overflow: hidden;
+			width: 100%;
+			
+		}
+
+        /* my css style for lab 2     #CE0018*/
+
+#landingPage {
+background-color:black;
+}
+#row-1-subheader {
+    		padding-top: 10px;
+			padding-bottom: 10px;
+			text-align: center;
+                    color:  #CE0018;
+                font-style:italic;
+                font-weight:bolder;
+                background-color: black;
+                font-size: xx-large;
+}
+        #row-1 {
+            background-color: black;
+            margin-top: 20px;
+            padding-left: 18%;
+            padding-top: 10px;
+
+            box-sizing: border-box;
+        }
+
+        #row-2 {
+            background-color: #FFFFFF;
+            padding: 10px 10px;
+            font-size: 1.2em;
+            line-height: 1.5em;
+    
+        }
+        
+        #ufc-logo {
+            padding-top: 10px;
+			width: 70%;
+			height: 70%;
+
+		}
+
+
+        .col {
+            font-size: 1.2em;
+            line-height: 1.5em;
+            text-align: center;
+            background-color:  black;
+			width: 31%;
+			float: left;
+            margin-left: 2%;
+			padding-left: 2%;
+			padding-right: 2%;
+            color: white;
+            
+			box-sizing: border-box;
+}
+.rank-header {
+    font-weight:bold;
+    font-size: 1em;
+}
+.col > #demetrious-johnson {
+width: 100%;
+}
+.col > #conor-mcgregor {
+width: 100%;
+}
+.col > #daniel-cormier {
+width: 100%;
+}
+
+#infoPage {
+background-color: #b30000;
+padding-bottom: 3%;
+}
+
+#infoPage > h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 70px;
+    font-weight:bolder;
+    background-color: black;
+    color: red;
+}
+#formPage {
+    background-color: white;
+    color: black;
+    font-size: 1.5em;
+}
+
+#formPage > h2 {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 70px;
+    font-weight:bolder;
+    background-color: red;
+    color: white;
+}
+#galleryPage {
+background-color: black;
+color: white;
+margin-bottom: 10px;
+}
+#galleryPage > h2 { 
+    padding-top: 10px;
+    text-align: center;
+    font-size: 65px;
+    font-weight: bolder;
+    color: #CE0018;
+}
+    #galleryPage > p {
+        text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    color: #CE0018;
+    }
+
+#gallery-row1 {
+width: 100%;
+}
+.profile {
+    background-color: #CE0018;
+   width: 31%;
+   float: left;
+   font-size: 1.2em;
+   text-align: center;
+   margin-left: 2%;
+   margin-bottom: 2%;
+   padding-left: 1%;
+   padding-right: 1%;
+   padding-bottom: 2%;
+   box-sizing: border-box;
+}
+    .profile > img {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 1%;
+    
+    }
+
+
+
+td {
+    
+    width: 20%;
+   padding: 10px 10px;
+}
+    td > input, td > select {
+        font-size: large;
+    }
+#submitbtn {
+font-size:x-large;
+}
+        /*style for lab2 end*/
+				/*style for lab3 begin*/
+#welcomeScreen, #finalRound  {
+    width: 50%;
+    min-width: 350px;
+    max-width: 550px;
+    margin-top: 10px;
+    margin-left: 25%;
+	margin-bottom: 10px;
+    padding: 1% 5%;
+    background-color: coral;
+    color: white;
+    
+}
+    #welcomeScreen > h2, #finalRound  > h2 {
+        text-align: center;
+        font-weight:bolder;
+    }
+#btnStartGame, #btnFinalRound {
+    width: 100%;
+    height: 50px;
+    font-size: x-large;
+
+}
+#btnPlayAgain {
+    width: 100%;
+    height: 400px;
+	margin-bottom: 0;
+    font-size: x-large;
+
+}
+#btnMainMenu {
+	margin-top: 10px;
+    width: 100%;
+    height: 100px;
+    font-size: x-large;
+
+}
+
+
+#btnSubmit {
+    width: 269px;
+    height: 50px;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-left: 25%;
+}
+#usrAnswer {
+   width: 269px;
+   height: 30px;
+   font-size: x-large;
+   margin-left: 25%;
+}
+#errorLabel {
+    margin-top: 10px;
+    margin-bottom: 0;
+    width:100%;
+    text-align: center;
+    font-size: larger;
+    font-weight:bold;
+}
+
+#gameScreen{
+    width: 50%;
+    height: 600px;
+    min-width: 350px;
+    max-width: 550px;
+    margin-top: 10px;
+	margin-bottom: 10px;
+    margin-left: 25%;
+    padding: 1% 5%;
+    background-color: coral;
+    color: white;
+
+}
+
+
+
+#lblScore {
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-bottom: 0;
+
+}
+#lblFinalScore {
+	text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-bottom: 0;
+}
+
+#imgDisplay {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+    margin-left: 25%;
+}
+#imgDisplay > img {
+    width: 269px;
+    height: 400px;
+}
+#userInput {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+#playAgain {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+		/*style for lab3 end*/
+		
+		/*style for lab4 begin*/
+
+
+#IntroScreen{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: cadetblue;
+}
+#btnBeginGame {
+    width: 300px;
+    height:150px;
+    background-color: aquamarine;
+        font-size: x-large;
+        font-weight: bolder;
+
+}
+#gamePlayScreen {
+    width: 100%;
+    font-size:xx-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color:cadetblue;
+        padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 35%;
+    box-sizing:border-box;
+    
+}
+#lblRoundScore {
+    padding-left: 5%;
+    color:crimson;
+}
+#lblRound {
+    padding-left: 2%;
+    color: blue;
+}
+#quizQuestion, #quizChoices {
+        margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+#quizAnswerOutput {
+    width: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 10px;
+    color: greenyellow;
+
+}
+#gamePlayScreen > #btnSubmit {
+    width: 269px;
+    height: 50px;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-left: 0;
+    background-color: darkseagreen;
+    color: orangered;
+}
+#btnNext {
+        width: 169px;
+    height: 40px;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: lightgreen;
+    color: white;
+}
+#resultsDisplay {
+    width: 100%;
+        margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: darkgoldenrod;
+    color: bisque;
+    font-size: x-large;
+    box-sizing:border-box;
+}
+
+
+
+        /*style for lab4 end*/
+		@media screen and (max-width: 600px) {
+			.column {
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		
+		
+		.rows {
+			background-color: #B64B5D;
+			color: #FFFFFF;
+			padding-top: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			margin-top: 10px;
+			margin-bottom:10px;
+		}
+
+        /* start css style for lab 2     */
+#infoPage {
+    width: 100%;
+
+    margin:0;
+    padding:0;
+}
+    .col {
+        margin-left: 0px;
+        width: 100%;			
+        margin-top: 10px;
+    }
+            .profile {
+                margin-left: 0px;
+                margin-top: 15px;
+                margin-bottom: 0px;
+            width: 100%;
+            
+            }
+
+            table td {
+                width: 100%;
+                display: block;
+            }
+
+            .nav > li {
+                display: block;
+            }
+            .nav {
+                text-align: left;
+            }
+        /* end css style for lab 2     */
+
+        }
+
+
+@media screen and (max-width: 700px) {
+                table td {
+                width: 100%;
+                display: block;
+            }
+}
