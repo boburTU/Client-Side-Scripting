@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Real Estate Database</title>
+    
+    <link rel="stylesheet" href="lab5stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.css"/>
+ 
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.js"></script>
+
+</head>
+<body>
+    <div id="header">
+        <h1>Real Estate Database</h1>
+    </div>
+
+    <div id="add" class="wrap">
+        <h3>Add Home to Database</h3>
+        <div id="col1">
+            MLS Number<br>
+            Bedrooms<br>
+            Size (Sq. Ft.)<br>
+            Image URL<br>
+            Address Line 1<br>
+            City<br>
+            Zip Code<br>
+        </div>
+        <div id="col2">
+            <input type="text" id="txtMls"><br>
+            <input type="text" id="txtBed"><br>
+            <input type="text" id="txtSize"><br>
+            <input type="text" id="txtImg"><br>
+            <input type="text" id="txtAdd1"><br>
+            <input type="text" id="txtCity"><br>
+            <input type="text" id="txtZip">
+        </div>
+        <div id="col3">
+            Description<br>
+            Bathrooms<br>
+            Price<br>
+            Current Status<br>
+            Address Line 2<br>
+            State
+        </div>
+        <div id="col4">
+            <input type="text" id="txtDesc"><br>
+            <input type="text" id="txtBath"><br>
+            <input type="text" id="txtPrice"><br>
+            <select id="lbAdd">
+                <option value="Active">Active</option>
+                <option value="Pending">Pending</option>
+                <option value="Sold">Sold</option>
+            </select><br>
+            <input type="text" id="txtAdd2"><br>
+            <input type="text" id="txtState"><br>
+        </div>
+
+        <div class="clear"></div>
+        <br>
+        <button id="btnAdd" onclick="addHome()">Add Home</button><br><br>
+        <span id="addmsg"></span>
+    </div>
+
+    <div id="change" class="wrap">
+        <h3>Change Status</h3>
+        MLS Number: <input type="text" id="changeMls"><br><br>
+        Status: 
+        <select id="lbChange">
+            <option value="Active">Active</option>
+            <option value="Pending">Pending</option>
+            <option value="Sold">Sold</option>
+        </select>
+        <button id="btnChange" onclick="changeStatus()">Submit</button><br><br>
+        <span id="changeMsg"></span>
+    </div>
+
+    <div id="searches" class="wrap">
+        Search By MLS Number: <input type="text" id="searchMls">
+        <button id="btnSrchMls" onclick="searchbyMLS()">Submit</button><br><br>
+        Search By Maximum Price: <input type="text" id="searchPrice">
+        <button id="btnSrchPrice" onclick="searchbyPrice()">Submit</button><br><br>
+        Search By Beds and Baths - Beds: <input type="text" id="searchBeds"> Baths: <input type="text" id="searchBaths">
+        <button id="btnSrchBB" onclick="searchbyBedBath()">Submit</button><br><br>
+        <span id="searchmsg"></span>
+    </div>
+
+    <div id="response" class="wrap">
+    </div>
+    
+
+
+    <script>
+        function addHome(){
+
+            if($('#txtMls').val() && Number.isInteger(Number($('#txtMls').val())))
+                var mls = $('#txtMls').val();
+            else
+                $('#addmsg').text('Please insert a valid integer for MLS Number.')
+            if($('#txtDesc').val())
+                var desc = $('#txtDesc').val();
+            else
+                $('#addmsg').text('Please insert a description.')
+            if($('#txtBed').val() && Number.isInteger(Number($('#txtBed').val())))
+                var bed = $('#txtBed').val();
+            else
+                $('#addmsg').text('Please insert a valid integer for number of bedrooms.')
+            if($('#txtBath').val() && Number.isInteger(Number($('#txtBath').val())))
+                var bath = $('#txtBath').val();
+            else
+                $('#addmsg').text('Please insert a valid integer for number of bathrooms.')
+            if($('#txtSize').val() && !Number.isNaN($('#txtSize').val()))
+                var size = $('#txtSize').val();
+            else
+                $('#addmsg').text('Please insert a valid number for size.')
+            if($('#txtPrice').val() && !Number.isNaN($('#txtPrice').val()))
+                var price = $('#txtPrice').val();
+            else
+                $('#addmsg').text('Please insert a valid number for price.')
+            if($('#txtImg').val())
+                var img = $('#txtImg').val();
+            else
+                $('#addmsg').text('Please insert an image URL.')
+            if($('#txtAdd1').val())
+                var add1 = $('#txtAdd1').val();
+            else
+                $('#addmsg').text('Please insert an address in address line 1.')
+            var add2;
+            if ($('#txtAdd2').val())
+                add2 = $('#txtAdd2').val();
+            else
+                add2 = "";//$('#addmsg').text('Please insert an address in address line 2.')
+            if($('#txtCity').val())
+                var city = $('#txtCity').val();
+            else
+                $('#addmsg').text('Please insert a city.')
+            if($('#txtState').val())
+                var state = $('#txtState').val();
+            else
+                $('#addmsg').text('Please insert a state.')
+            if($('#txtZip').val() && Number.isInteger(Number($('#txtZip').val())))
+                var zip = $('#txtZip').val();
+            else
+                $('#addmsg').text('Please insert a valid integer for zip code.')
+
+
+            var status = $('#lbAdd').find(":selected").text();
+
+            console.log(mls + desc + bed + bath + size + price + img + status + add1 + add2 + city + state + zip);
+
+
+
+            if (mls && desc && bed && bath && size && price && img && status && add1 && city && state && zip) {
+
+                var home = new Object();
+
+                home.MLS_NUM = mls;
+                home.description = desc;
+                home.numOfBedrooms = bed;
+                home.numOfBathrooms = bath;
+                home.size = size;
+                home.price = price;
+                home.imageURL = img;
+                home.currentStatus = status;
+                home.address_1 = add1;
+                home.address_2 = add2;
+                home.city = city;
+                home.state = state;
+                home.zipcode = zip;
+
+                var inputData = new Object();
+                inputData.home = home;
+
+                var inputString = JSON.stringify(inputData);
+
+                $.ajax({
+                    type: "POST",
+                    url: "RealEstate.asmx/AddHome",
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    data: inputString,
+                    success: function(){
+                        $('#addmsg').text('Home was successfully added!');
+                        $('#txtMls').val("");
+                        $('#txtDesc').val("");
+                        $('#txtBed').val("");
+                        $('#txtBath').val("");
+                        $('#txtSize').val("");
+                        $('#txtPrice').val("");
+                        $('#txtImg').val("");
+                        $('#lbAdd').val("Active");
+                        $('#txtAdd1').val("");
+                        $('#txtAdd2').val("");
+                        $('#txtCity').val("");
+                        $('#txtState').val("");
+                        $('#txtZip').val("");
+                    },
+                    error: function(req, status, error){
+                        $('#addmsg').text("Error: " + req.responseText + " | " + status + " | " + error);
+                    }
+                });
+            }
+
+
+        }
+
+        function changeStatus(){
+            if(!$('#changeMls').val() || !Number.isInteger(Number($('#changeMls').val()))){
+                $('#changeMsg').text("Please enter a valid integer MLS Number.");
+            }
+            else{
+                var mls = $('#changeMls').val();
+                var status = $('#lbChange').find(':selected').text();
+
+                var inputParams = new Object();
+                inputParams.MLS_NUM = mls;
+                inputParams.newStatus = status;
+
+                var inputString = JSON.stringify(inputParams);
+
+                $.ajax({
+                    type: "POST",
+                    url: "RealEstate.asmx/GetHomeByMLS",
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    data: "{MLS_NUM:" + mls + "}",
+                    success: function (data) {
+                        if (data.d.MLS_NUM) {
+                            $.ajax({
+                                type: "POST",
+                                url: "RealEstate.asmx/ChangeStatus",
+                                contentType: "application/json; charset=utf-8",
+                                datatype: "json",
+                                data: inputString,
+                                success: function () {
+                                    $('#changeMsg').text('Status successfully changed!');
+                                    $('#changeMls').val("");
+                                },
+                                error: function (req, status, error) {
+                                    $('#changeMsg').text('Error: ' + req.ResponseText + '|' + status + '|' + error);
+                                }
+                            });
+                        }
+                        else {
+                            $('#changeMsg').text('No homes with that MLS number.');
+                        }
+                    },
+                    error: function(req, status, error){
+                        $('#changeMsg').text('Error: ' + req.ResponseText + '|' + status + '|' + error);
+                    }
+                });
+            }
+        }
+
+        function searchbyMLS(){
+            if (!$('#searchMls').val() || !Number.isInteger(Number($('#searchMls').val()))) {
+                $('#searchmsg').text("Please enter a valid integer MLS Number.");
+            }
+            else {
+                var mls = $('#searchMls').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "RealEstate.asmx/GetHomeByMLS",
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    data: "{MLS_NUM:" + mls + "}",
+                    success: function (data) {
+                        if (data.d.MLS_NUM) {
+                            var home = data.d;
+                            $('#response').html('<h3>Search Results</h3> <img src="' + home.imageURL + '"><br> MLS Number: ' + home.MLS_NUM + '<br>Description: ' + home.description + '<br>Bedrooms: ' + home.numOfBedrooms + '<br>Bathrooms: ' + home.numOfBathrooms + '<br>Size: ' + home.size + ' Square Feet<br>Price: $' + home.price + '<br>Status: ' + home.currentStatus + '<br>Address: ' + home.address_1 + ', ' + home.address_2 + '<br>City: ' + home.city + '<br>State: ' + home.state + '<br>Zip Code: ' + home.zipcode + '<br>');
+                            $('#response').css('display', 'block');
+                            $('html, body').animate({
+                                scrollTop: $("#response").offset().top
+                            }, 500);
+
+                            $('#searchMls').val('');
+                        }
+                        else
+                            $('#searchmsg').text("There are no homes with that MLS Number.");
+                        
+                    },
+                    error: function (req, status, error) {
+                        $('#searchmsg').text('Error: ' + req.ResponseText + '|' + status + '|' + error);
+                    }
+                });
+            }
+        }
+
+        function searchbyPrice(){
+            if (!$('#searchPrice').val() || Number.isNaN($('#searchPrice').val())) {
+                $('#searchmsg').text("Please enter a valid number for price.");
+            }
+            else {
+                var price = $('#searchPrice').val();
+
+                var inputParams = new Object();
+                inputParams.price = price;
+
+                var inputString = JSON.stringify(inputParams);
+
+                $.ajax({
+                    type: "POST",
+                    url: "RealEstate.asmx/GetHomesByPrice",
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    data: inputString,
+                    success: function (data) {
+                        var homes = data.d;
+                        if (homes.length > 0) {
+                            
+                            var htmlstring = '<h3>Search Results</h3>';
+                            
+                            $.each(homes, function (index, home) {
+                                htmlstring += '<div class="homelistitem"><img src="' + home.imageURL + '"><br> MLS Number: ' + home.MLS_NUM + '<br>Description: ' + home.description + '<br>Bedrooms: ' + home.numOfBedrooms + '<br>Bathrooms: ' + home.numOfBathrooms + '<br>Size: ' + home.size + ' Square Feet<br>Price: $' + home.price + '<br>Status: ' + home.currentStatus + '<br>Address: ' + home.address_1 + ', ' + home.address_2 + '<br>City: ' + home.city + '<br>State: ' + home.state + '<br>Zip Code: ' + home.zipcode + '<br></div>';
+                            });
+
+
+                            $('#response').html(htmlstring);
+                            $('#response').css('display', 'block');
+                            $('html, body').animate({
+                                scrollTop: $("#response").offset().top
+                            }, 500);
+
+                            $('#searchPrice').val('');
+                        }
+                        else {
+                            $('#searchmsg').text("There are no homes less than that price.");
+                        }
+                    },
+                    error: function (req, status, error) {
+                        $('#searchmsg').text('Error: ' + req.ResponseText + '|' + status + '|' + error);
+                    }
+                });
+            }
+        }
+
+        function searchbyBedBath() {
+            
+            if (!$('#searchBeds').val() || !Number.isInteger(Number($('#searchBeds').val()))) {
+                $('#searchmsg').text("Please enter a valid integer for number of beds.");
+            }
+            else if (!$('#searchBaths').val() || !Number.isInteger(Number($('#searchBaths').val()))) {
+                $('#searchmsg').text("Please enter a valid integer for number of baths.");
+            }
+            else {
+                var beds = $('#searchBeds').val();
+                var baths = $('#searchBaths').val();
+
+                var inputParams = new Object();
+                inputParams.bedrooms = beds;
+                inputParams.bathrooms= baths;
+
+                var inputString = JSON.stringify(inputParams);
+
+                $.ajax({
+                    type: "POST",
+                    url: "RealEstate.asmx/GetHomesByBedBath",
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    data: inputString,
+                    success: function (data) {
+                        var homes = data.d;
+                        if (homes.length > 0) {
+
+                            var htmlstring = '<h3>Search Results</h3>';
+
+                            $.each(homes, function (index, home) {
+                                htmlstring += '<div class="homelistitem"><img src="' + home.imageURL + '"><br> MLS Number: ' + home.MLS_NUM + '<br>Description: ' + home.description + '<br>Bedrooms: ' + home.numOfBedrooms + '<br>Bathrooms: ' + home.numOfBathrooms + '<br>Size: ' + home.size + ' Square Feet<br>Price: $' + home.price + '<br>Status: ' + home.currentStatus + '<br>Address: ' + home.address_1 + ', ' + home.address_2 + '<br>City: ' + home.city + '<br>State: ' + home.state + '<br>Zip Code: ' + home.zipcode + '<br></div>';
+                            });
+
+
+                            $('#response').html(htmlstring);
+                            $('#response').css('display', 'block');
+                            $('html, body').animate({
+                                scrollTop: $("#response").offset().top
+                            }, 500);
+
+                            $('#searchBeds').val('');
+                            $('#searchBaths').val('');
+                        }
+                        else {
+                            $('#searchmsg').text("There are no homes with the specified number of bedrooms and bathrooms.");
+                        }
+                        
+                    },
+                    error: function (req, status, error) {
+                        $('#searchmsg').text('Error: ' + req.ResponseText + '|' + status + '|' + error);
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>
