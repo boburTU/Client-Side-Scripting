@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <div>
+        <table>
+            <tr>
+                <td><label>Username: </label></td>
+
+                <td><input id="userName" type="text" /> </td>
+
+                <td>
+                    <span>
+                        <svg id="userSuccess" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z" fill="#008000" /></svg>
+                        <svg id="userError" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" fill="#EC1A0A" /></svg>
+                    </span> 
+                </td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+
+                <td><input id="userPass" type="password" /> </td>
+
+                <td>
+                    <span>
+
+                        <svg id="passSuccess" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z" fill="#008000" /></svg>
+                        <svg id="passError" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" fill="#EC1A0A" /></svg>
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><label id="statusMessage"></label></td>
+
+            </tr>
+            <tr>
+                <td colspan="3"><input id="logInBtn" type="button" value="Log In"/></td>
+            </tr>
+
+
+        </table>
+    </div>
+
+
+
+
+    <script src="dynamics.js"></script>
+    <script type="text/javascript">
+
+        var answer = "b"; //username and password
+        var username = document.getElementById("userName");
+        var password = document.getElementById("userPass");
+        var loginbtn = document.getElementById("logInBtn");
+        var svguserError = document.getElementById("userError");
+        var svguserScs = document.getElementById("userSuccess");
+        var svgpassError = document.getElementById("passError");
+        var svgpassScs = document.getElementById("passSuccess");
+        svguserError.style.visibility = "hidden";
+        svguserScs.style.visibility = "hidden";
+        svgpassError.style.visibility = "hidden";
+        svgpassScs.style.visibility = "hidden";
+
+        //on click event handler
+        loginbtn.onclick = function () {
+            checkInputForEmpty();
+
+            if (username.value != "" && password.value != "") {
+                validateAccount();
+            }
+            else {
+                svguserScs.style.visibility = "hidden";
+                svgpassScs.style.visibility = "hidden";
+            }
+        }
+
+        //check if input is provided
+        function checkInputForEmpty() {
+            statusMessage.innerText = "";
+
+            if (username.value.toLowerCase() == "") {
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Username is required to login. Please provide your username";
+                noInputAnimation(username, svguserError);
+                return;
+            }
+            else {
+                username.style.borderColor = "inherit";
+                svguserError.style.visibility = "hidden";
+                statusMessage.innerText = "";
+
+            }
+            if (password.value == "") {
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Password is required to login. Please provide your password";
+                noInputAnimation(password, svgpassError);
+                return;
+            }
+            else {
+                password.style.borderColor = "inherit";
+                svgpassError.style.visibility = "hidden";
+                statusMessage.innerText = "";
+            }
+
+        }
+
+        //check if username and pass is correct
+        function validateAccount() {
+            if (username.value.toLowerCase() == answer) {
+                statusMessage.innerText = "";
+                svguserScs.style.visibility = "visible";
+                username.style.borderColor = "inherit";
+                correctInputAnimation(svguserScs);
+                
+            }
+            else {
+                svguserScs.style.visibility = "hidden";
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Incorrect username. Try again!";
+                incorrectInputAnimation(username);
+                return;
+            }
+            if (password.value == answer) {
+                statusMessage.innerText = "";
+                svgpassScs.style.visibility = "visible";
+                password.style.borderColor = "inherit";
+                correctInputAnimation(svgpassScs);
+            }
+            else {
+                svgpassScs.style.visibility = "hidden";
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Incorrect password. Try again!";
+                incorrectInputAnimation(password);
+                return;
+            }
+        }
+
+        //animate when no input is provided
+        function noInputAnimation(el, svg) {
+            dynamics.css(el, {
+                scale: 1.0
+            })
+            dynamics.animate(el, {
+                scale: 1.5
+            }, {
+                type: dynamics.bounce,
+                duration: 5500,
+                friction: 70
+
+            })
+            svg.style.visibility = "visible";
+            el.style.borderColor = "red";
+            dynamics.css(svg, {
+                translateX: 0
+            })
+            dynamics.animate(svg, {
+                translateX: -50
+            }, {
+                type: dynamics.forceWithGravity,
+                duration: 2750,
+                bounciness: 470,
+                complete: function () {
+                    dynamics.css(svg, {
+                        rotateZ: 0
+                    })
+                    dynamics.animate(svg, {
+                        rotateZ: -70
+                    }, {
+                        type: dynamics.bounce,
+                        duration: 2750,
+                        frequency: 900
+                    })
+
+                }
+            })
+        }
+
+        //animate when correct input is provided
+        function correctInputAnimation(svg) {
+            dynamics.css(svg, {
+                rotateZ: 0,
+                scale: 1
+            })
+            dynamics.animate(svg, {
+                rotateZ: -180,
+                scale: 1.8
+            }, {
+                type: dynamics.bounce,
+                duration: 5500,
+                frequency: 900
+            })
+        }
+
+        //animate when incorrect input is provided
+        function incorrectInputAnimation(el) {
+            dynamics.css(el, {
+                translateX: 0
+            })
+            dynamics.animate(el, {
+                translateX: 50
+            }, {
+                type: dynamics.bounce,
+                duration: 2500,
+                frequency: 800
+
+            })
+            el.value = "";
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,621 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="tutorial.css">
+  <title>Dynamics.JS Tutorial</title>
+
+  
+
+</head>
+
+<body>
+  
+    <!--<div id="container">-->
+        <div id="header">
+            <h1>Dynamics.JS</h1>
+            <h5>by Bobur Zakhidov</h5>
+        </div>
+        <div class="sections">
+            <h2>Introduction</h2>
+            <p>
+               <strong>Topic:</strong> Dynamics.JS is a JavaScript library that creates physics-based animations. Dynamics.js allows you to animate CSS and SVG properties of any DOM elements.
+                And in addition to that, it also allows you to animate any JavaScript objects. 
+            </p>
+            <p>
+               <strong>History:</strong> It was developed by Michael Villar in mid 2015 and is hosted as open source code on github. Soem code from Sylvester.js (vector and matrix parts) has been used while developing
+                dynamics.js. It supports the following browsers: Safari (7++), Firefox (35++), Chrome (34++),and IE (10++). Latest version is 1.1.5 and was last updated on August 26, 2016.
+            </p>
+            <p>
+                <strong>Importance and Relavance:</strong> I find this topic to be closely related to what we are being taught in CIS 3344 and that is manupulation of DOM elements using JavaScript. 
+                Dynamics.js manipulates DOM elements and adds physics animation to them. And anyone with basic knowledge of JavaScript will be able to use it in their own project.  
+            </p>
+
+        </div>
+
+        <div class="sections">
+            <h2>Set Up</h2>
+            <p>
+                <strong>Required tools:</strong> HTML document editor (optional), Visual Studio, and browser (Chrome 34++ prefered)
+            </p>
+
+            <p>
+                <strong>Download:</strong> There are 3 ways to download Dynamics.JS:
+                <ol>
+                    <li>Using npm package manager</li> 
+                        <p>Type the following command: <code>npm install dynamics.js</code></p>
+                    <li>Using bower package manager</li>
+                        <p>Type the following command: <code>bower install dynamics.js</code></p>
+                    <li>Downloading the required files from github page</li> 
+                    <p>Link to download: https://github.com/michaelvillar/dynamics.js/releases</p>
+                </ol>
+            </p>
+
+            <p>
+               <strong>Setup:</strong> In order to start using dynamics.js, follow these steps:
+                <ol>
+                    <li>Extract the downloaded file</li>
+                    <li>Navigate the file and find dynamics.js file</li>
+                    <li>Copy the dynamics.js file into your project folder</li>
+                </ol>
+                
+
+                
+                
+            </p>
+            <p>
+               <strong>Finish:</strong> Now you are ready to use the dynamics.js
+            </p>
+        </div>
+
+        <div class="sections">
+            <h2>Demo Instructions</h2>
+            <div class="steps">
+                <h4>Step 1: Open Visual Studio and create new project</h4>
+
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Open Visual Studio</li>
+                    <li>Create new project</li>
+                    <li>Create new web application</li>
+                </ul>
+
+                <img src="screenshots/newProject.png"/>
+                <img src="screenshots/createNewProject.png" />
+
+
+
+            </div>
+
+            <div class="steps">
+                <h4>Step 2: Create new html file and add dynamics.js file</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Right click your project and select Add New Item</li>
+                    <li>Under Web, select HTML document</li>
+                    <li>Name the file "tutorial"</li>
+                    <li>Right click your project and select Add Existing Item</li>
+                    <li>Select the dynamics.js file</li>
+                    <li>Open your tutorial.html file</li>
+                    <li>Add the following script code in your html document <xmp>
+    <script src="dynamics.js"></script>
+</xmp></li>
+
+                </ul>
+                <p>Note: Make sure you include dynamics.js file in your project. Or animations will not work. </p>
+
+                <img src="screenshots/newHTML.png" />
+                <img src="screenshots/dynamicsInclude.png" />
+                <img src="screenshots/dynamicInHtml.png" />
+
+
+      
+            </div>
+
+
+            <div class="steps">
+                <h4>Step 3: Create table inside div tag</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Open your tutorial.html file</li>
+                    <li>Inside the body tag, add new div element</li>
+                    <li>Inside the div element, add new table element</li>
+                    <li>Create 4 rows inside a table</li>
+                    <li>Create 3 cols for the first 2 rows and 1 for the last 2</li>
+                    <li>For every column, add elements as shown in the screenshots below</li>
+                    <li>Link for svg tag is below in "References" section</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+
+                <p>Note: We do not require to create a table, the only purpose table is being used is for styling. Other elements
+                will be used for animation. </p>
+
+                <img src="screenshots/divAndTable.png" />
+                <img src="screenshots/divAndTableComplete.png" />
+                <img src="screenshots/outputTable.png" />
+
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output1.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+                
+
+
+            </div>
+
+
+            <div class="steps">
+                <h4>Step 4: Get references to all the needed elements</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Open your tutorial.html file</li>
+                    <li>Inside the body tag, add new script tag</li>
+                    <li>Inside the script tag, get the reference to all the elements and assign them to variables as shown in pictures</li>
+                    <li>After that run the project, you should see like the output below</li>
+
+                </ul>
+                <p>Note: We need references to all the elements in order to style them, and to add animation to them using dynamics.js</p>
+
+                <img src="screenshots/scriptNew.png" />
+                <img src="screenshots/scriptDeclarations.png" />
+                <img src="screenshots/outputTable2.png" />
+
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output2.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="steps">
+                <h4>Step 5: Declare all the functions</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Go below declared variables inside the script tag</li> 
+                    <li>Declare all the functions as shown below</li>
+                </ul>
+                <p>Note: Click event function will be used to call functions checkEmpty and validateAccount. CheckInput() function will check if there are any
+                values in the inputs. ValidateAccount() function will check if values are correct. noInputAnimation() function is called to animate an element
+                when one of the input elements are empty. CorrectInputAnimation() function will be called to animate when input element has correct value and IncorrectInputAnimation()
+                function will be called to animate when input element is incorrect.  </p>
+
+                <img src="screenshots/functions.png" />
+                <img src="screenshots/functionsAnimation.png" />
+            </div>
+
+
+            <div class="steps">
+                <h4>Step 6: Define click event function</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the click event function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                </ul>
+                <p>Note: When click event is triggered, it should check if all the input fields have values, if so it should call validation function.
+                If not, it should hide success svg tag icons. </p>
+                <img src="screenshots/codeClickEventComplete.png" />
+            </div>
+
+
+            <div class="steps">
+                <h4>Step 7: Define function that checks for empty input</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the checkInputForEmpty() function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+                <p>
+                    Note: This function will check if input element has values. If there are no values, it will display a message. It will hide the 
+                    svg element, if there is a value inside an input element.  
+                </p>
+
+                <img src="screenshots/codeCheckInput.png" />
+                <img src="screenshots/outputTable3.png" />
+                <img src="screenshots/outputTable4.png" />
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output3and4.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="steps">
+                <h4>Step 8: Define function that checks for valid input</h4>
+
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the validateAccount() function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+                <p>
+                    Note: This function will check if input element has correct values. If its not correct value, it will display a message. It will show the
+                    svg element if the value inside an input element is correct.
+                </p>
+
+                <img src="screenshots/codeValidateInput.png" />
+                <img src="screenshots/outputTable5.png" />
+                <img src="screenshots/outputTable6.png" />
+                <img src="screenshots/outputTable7.png" />
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output5and6and7.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="steps">
+                <h4>Step 9: Define animation function for empty inputs</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the noInputAnimation() function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                    <li>Inside the checkInputForEmpty() function</li>
+                    <li>Add code to call the noInputAnimation function when input values are missing like shown in screenshots</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+                <p>
+                    Note: The noInputAnimation() function will take two elements, it will initialize their initial css properties and then add animation to them. 
+                    For element "el", it will scale using bounce animation, and for element "svg", it will move left using gravity animation and when animation is done, it will
+                    call another animation to rotate it using bounce animation. When this function is triggered, it will display the svg element, and add red border style to input element.
+                </p>
+                <img src="screenshots/codeNoInputAnimationComplete.png" />
+                <img src="screenshots/codeCheckInputComplete.png" />
+                <img src="screenshots/outputTable8.png" />
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output8.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="steps">
+                <h4>Step 10: Define animation function for valid input</h4>
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the correctInputAnimation() function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                    <li>Inside the validateAccount() function</li>
+                    <li>Add code to call the correctInputAnimation() function when input values are correct like shown in screenshots</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+                <p>
+                    Note: The correctInputAnimation() function will take one element, it will initialize the initial css properties and then add animation to it.
+                    For element "svg", it will scale and rotate using bounce animation
+                </p>
+                
+                <img src="screenshots/codeCorrectInputAnimationComplete.png" />
+                <img src="screenshots/codeValidateInputWithCorrectAnimation.png" />
+                <img src="screenshots/outputTable9.png" />
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output9.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="steps">
+                <h4>Step 11: Define animation function for invalid input</h4>
+                
+                <p>Steps to do: (Check screenshots for reference)</p>
+                <ul>
+                    <li>Inside the inCorrectInputAnimation() function</li>
+                    <li>Add the code as shown in the screenshot</li>
+                    <li>Inside the validateAccount() function</li>
+                    <li>Add code to call the correctInputAnimation() function when input values are incorrect like shown in screenshots</li>
+                    <li>After that run the project, you should see like the output below</li>
+                </ul>
+                <p>
+                    Note: The inCorrectInputAnimation() function will take one element, it will initialize the initial css properties and then add animation to it.
+                    For element "el", it will move right using bounce animation, giving the feel that element is shaking. It also clears any values inside an element. 
+                </p>
+                <img src="screenshots/codeIncorrectInputAnimationComplete.png" />
+                <img src="screenshots/codeValidateInputWithIncorrectAnimation.png" />
+
+                <img src="screenshots/outputTable10.png" />
+                <div id="interactiveWindow">
+                    <p>Interactive output window: </p>
+                    <div>
+                        <object type="text/html" data="output10.html" width="600px" height="400px" style="overflow:auto;border:5px dashed white"></object>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steps" >
+                <h4>Finished: Actual demo</h4>
+
+                <!--<p>Click here to view demo. <a href="demo.html">Demo</a></p>-->
+
+                <div id="demo">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Username: </label>
+                            </td>
+                            <td>
+                                <input id="userName" type="text" />
+                            </td>
+                            <td>
+                                <span>
+                                    <svg id="userSuccess" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z" fill="#008000" /></svg>
+                                    <svg id="userError" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" fill="#EC1A0A" /></svg>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Password: </label>
+                            </td>
+
+                            <td>
+                                <input id="userPass" type="password" />
+                            </td>
+
+                            <td>
+                                <span>
+
+                                    <svg id="passSuccess" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 17.292l-4.5-4.364 1.857-1.858 2.643 2.506 5.643-5.784 1.857 1.857-7.5 7.643z" fill="#008000" /></svg>
+                                    <svg id="passError" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" fill="#EC1A0A" /></svg>
+
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <label id="statusMessage"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                <input id="logInBtn" type="button" value="Log In" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+            </div>
+
+
+
+            </div>
+
+        <div class="sections">
+            <h2>Summary</h2>
+
+            <p>In summary, this was a very interesting topic and I had great time learning about all of its feautures. Unfortunately, for this tutorial
+            I was not able to use all of the feautures of dynamics.js due to limited imagination. However, I do believe that someone with great imagination
+            can build very fun and cool looking websites.</p>
+            <p>At the end, getting exposure to a JavaScript library that was not taught in class really taught me valuable lesson that JavaScript is a very 
+            powerfull language and anyone with good knowledge of JavaScript can create their own libraries. With that being said, I hope
+            to explore different JavaScript libraries in the future and perhaps build my own. </p>
+        </div>
+
+        <div class="sections">
+            <h2>References</h2>
+            <ul>
+                <li>Link to homepage of dynamics.js: <a href="http://dynamicsjs.com/"> http://dynamicsjs.com/</a></li>
+                <li>Link to github homepage of dynamics.js:<a href="https://github.com/michaelvillar/dynamics.js">https://github.com/michaelvillar/dynamics.js</a></li>
+                <li>Link to download page of dynamics.js: <a href="https://github.com/michaelvillar/dynamics.js/releases">https://github.com/michaelvillar/dynamics.js/releases</a></li>
+                <li>Link to download variety of svgs:<a href="https://iconmonstr.com/">https://iconmonstr.com/</a></li>
+                <li>Link to error svg that was used for the demo:<a href="https://iconmonstr.com/error-7-svg/">https://iconmonstr.com/error-7-svg/</a>  </li> 
+                <li>Link to checkmark svg that was used for the demo:<a href="https://iconmonstr.com/check-mark-4-svg/">https://iconmonstr.com/check-mark-4-svg/</a>  </li> 
+                <li>Link to w3schools:<a href="https://www.w3schools.com/">https://www.w3schools.com/</a> </li>
+                <li>Link to download Visual Studio: <a href="https://www.visualstudio.com/downloads/">https://www.visualstudio.com/downloads/</a></li>
+            </ul>
+            <p></p>
+        </div>
+
+    <!--</div>-->
+
+
+
+
+  
+  <script src="dynamics.js"></script>
+    <script type="text/javascript">
+		 
+        var answer = "b"; //username and password
+		
+        var username = document.getElementById("userName");
+        var password = document.getElementById("userPass");
+        var loginbtn = document.getElementById("logInBtn");
+        var svguserError = document.getElementById("userError");
+        var svguserScs = document.getElementById("userSuccess");
+        var svgpassError = document.getElementById("passError");
+        var svgpassScs = document.getElementById("passSuccess");
+        svguserError.style.visibility = "hidden";
+        svguserScs.style.visibility = "hidden";
+        svgpassError.style.visibility = "hidden";
+        svgpassScs.style.visibility = "hidden";
+
+
+        function validateAccount() {
+            if (username.value.toLowerCase() == answer) {
+                //user name is correct
+                statusMessage.innerText = "";
+                svguserScs.style.visibility = "visible";
+                username.style.borderColor = "inherit";
+                correctInputAnimation(svguserScs); 
+            }
+            else {
+                //incorrect, shake the input (function)
+                svguserScs.style.visibility = "hidden";
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Incorrect username. Try again!";
+                incorrectInputAnimation(username);
+                return;
+            }
+
+            if (password.value == answer) {
+                //pass correct
+                statusMessage.innerText = "";
+                svgpassScs.style.visibility = "visible";
+                password.style.borderColor = "inherit";
+                correctInputAnimation(svgpassScs);
+
+            }
+            else {
+                //invalid pass shake the input(function)
+                svgpassScs.style.visibility = "hidden";
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Incorrect password. Try again!";
+                incorrectInputAnimation(password);
+                return;
+
+
+            }
+        }
+        
+        function checkInputForEmpty() {
+            statusMessage.innerText = "";
+            if (username.value.toLowerCase() == "") {
+                //user name is missing
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Username is required to login. Please provide your username";
+                noInputAnimation(username,svguserError);
+                return;
+
+            }
+            else {
+                
+                username.style.borderColor = "inherit";
+                svguserError.style.visibility = "hidden";
+                statusMessage.innerText = "";
+                
+            }
+            if (password.value == "") {
+                //password is missing
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Password is required to login. Please provide your password";
+                noInputAnimation(password, svgpassError);
+                return;
+            }
+            else {
+                
+                password.style.borderColor = "inherit";
+                svgpassError.style.visibility = "hidden";
+                statusMessage.innerText = "";
+            }
+
+            
+        }
+
+        loginbtn.onclick = function () {
+            checkInputForEmpty();
+                
+            if (username.value != "" && password.value != "") {
+                validateAccount();
+            }
+            else {
+                svguserScs.style.visibility = "hidden";
+                svgpassScs.style.visibility = "hidden";
+            }
+            
+        }
+
+        function noInputAnimation(el, svg) {
+
+            dynamics.css(el, {
+                scale: 1.0
+            })
+            dynamics.animate(el, {
+                scale: 1.5
+            }, {
+                type: dynamics.bounce,
+                duration: 5500,
+                friction: 70
+
+            })
+            svg.style.visibility = "visible";
+            el.style.borderColor = "red";
+            dynamics.css(svg, {
+                translateX: 0
+            })
+            dynamics.animate(svg, {
+                translateX: -50
+            }, {
+                type: dynamics.forceWithGravity,
+                duration: 2750,
+                bounciness: 470,
+                complete: function () {
+                    dynamics.css(svg, {
+                        rotateZ: 0
+                    })
+                    dynamics.animate(svg, {
+                        rotateZ: -70
+                    }, {
+                        type: dynamics.bounce,
+                        duration: 2750,
+                        frequency: 900
+                    })
+
+                }
+            })
+
+        }
+
+        function correctInputAnimation(svg) {
+
+            dynamics.css(svg, {
+                rotateZ: 0,
+                scale: 1
+            })
+            dynamics.animate(svg, {
+                rotateZ: -180,
+                scale: 1.8
+            }, {
+                type: dynamics.bounce,
+                duration: 5500,
+                frequency: 900
+            })
+        }
+
+        function incorrectInputAnimation(el) {
+            dynamics.css(el, {
+                translateX: 0
+            })
+            dynamics.animate(el, {
+                translateX: 50
+            }, {
+                type: dynamics.bounce,
+                duration: 2500,
+                frequency: 800
+
+            })
+            el.value = "";
+        }
+
+
+  </script>
+</body>
+<footer>
+           <strong>Tutorial created by Bobur Zakhidov. </strong> 
+</footer>
+</html>
