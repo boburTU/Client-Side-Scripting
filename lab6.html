@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 6: News API</title>
+	<meta charset="utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="stylelab6.css">
+	
+
+</head>
+<body>
+    <div id="header">
+        <h1>LAB 6: News API</h1>
+    </div>
+    <div id="searchInputNews">
+		<h3>Find articles by:</h3>
+		<div id="content">
+        <label>Keyword: </label>
+        <input type="text" id="keySearch"/>
+        <input type="button" id="btnkeySearch" value="Find Articles" />
+        <br>
+		<br>
+		<label>Category: </label>
+		<select id="categorySelect">
+		<option value="">Select</option>
+		  <option value="business">Business</option>
+		  <option value="entertainment">Entertainment</option>
+		  <option value="general">General</option>
+		  <option value="health">Health</option>
+		  <option value="science">Science</option>
+		  <option value="sports">Sports</option>
+		  <option value="technology">Technology</option>
+		</select>
+		<input type="button" id="btnCategorySearch" value="Find Articles" />
+		<br>
+		<br>
+		<label>Country: </label>
+		  <input type="radio" name="country" value="us"><span>USA</span>
+		  <input type="radio" name="country" value="au"><span>Australia</span>
+          <input type="radio" name="country" value="cu"><span>Cuba</span>
+		  <input type="radio" name="country" value="br"><span>Brazil</span>
+		  <input type="radio" name="country" value="ca"><span>Canada</span>
+          <input type="radio" name="country" value="de"><span>Germany</span>
+		  <input type="radio" name="country" value="jp"><span>Japan</span>
+		  <input type="radio" name="country" value="mx"><span>Mexico</span>
+          <input type="radio" name="country" value="ru"><span>Russia</span>
+		 <input type="button" id="btnCountrySearch" value="Find Articles" />
+		 <br>
+		 <br>
+        <label id="lblStatus"></label>
+        <!-- <input type="button" id="btnGetHeadlines" value="Get top headlines in US" /> -->
+		</div>
+    </div>
+	<div id="results">
+	<h3>Results: <span id="totalArticles"></span></h3>
+	</div>
+	
+    <div id="searchOutputNews"></div>
+
+    <script>
+        $(document).ready(function () {
+            var lblstatus = document.getElementById("lblStatus");
+            //<!-- $("#btnGetHeadlines").click(function () { -->
+            //    <!-- document.getElementById("searchOutputNews").innerHTML = ""; -->
+            //    <!-- var strURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=48ca5b7c4fba4ed7ba3667333527fc6f"; -->
+
+            //    <!-- // Make an AJAX request and display the response in the appropriate div. -->
+            //    <!-- $.ajax({ -->
+            //        <!-- url: strURL, -->
+            //        <!-- dataType: "json", -->
+            //        <!-- success: function (data) { -->
+            //            <!-- console.log(data) -->
+            //            <!-- // The input parameter data.d contains the JS object returned by the web method. -->
+            //            <!-- // Use either data.d to access properties of the object like data.d.mascot or -->
+            //            <!-- // put it in a variable and use the variable. -->
+            //            <!-- $.each(data.articles, function (index, articles) { -->
+            //                <!-- if (articles.urlToImage != null) { -->
+            //                    <!-- $("#searchOutputNews").append("<h3>Title: " + articles.title + "</h3>","<img src='" + articles.urlToImage + "' />", -->
+            //                        <!-- "<p>", "Short description: ", articles.description, "<a href='" + articles.url + "'> read more</a>", "<br>Source: ", articles.source.name, -->
+            //                         <!-- "<br>Posted On: ", articles.publishedAt, "</p>"); -->
+            //                <!-- } -->
+            //            <!-- }) -->
+                        
+
+            //        <!-- }, -->
+            //        <!-- error: function (req, status, error) { -->
+            //            <!-- alert("Error: " + req.responseText + " | " + status + " | " + error); -->
+            //        <!-- } -->
+            //    <!-- }); -->
+            //<!-- }); -->
+
+
+            $("#btnkeySearch").click(function () {
+                document.getElementById("searchOutputNews").innerHTML = "";
+                var query = "";
+                query = document.getElementById("keySearch").value;
+                if (query != "") {
+                    lblstatus.innerText = "";
+                    var strURL = 'https://newsapi.org/v2/top-headlines?' +
+                                    'q=' + query + 
+                                    '&apiKey=48ca5b7c4fba4ed7ba3667333527fc6f';
+
+                    // Make an AJAX request and display the response in the appropriate div.
+                    $.ajax({
+                        url: strURL,
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+							if (data.totalResults <= 0) {
+								$("#searchOutputNews").append("<p id=\"noArticles\">No articles were found with that keyword!</p>");
+								$("#totalArticles").text(data.totalResults + " articles found");
+							}
+							else {
+                            // The input parameter data.d contains the JS object returned by the web method.
+                            // Use either data.d to access properties of the object like data.d.mascot or
+                            // put it in a variable and use the variable.
+                            $.each(data.articles, function (index, articles) {
+                                if (articles.urlToImage != null) {
+                                    $("#searchOutputNews").append("<h3>Title: " + articles.title + "</h3>","<img src='" + articles.urlToImage + "' />",
+                                    "<p>", "Short description: ", articles.description, "<a href='" + articles.url + "'> read more</a>", "</p>", "<p>","Source: ", articles.source.name,"</p>",
+                                     "<p>","Posted On: ", articles.publishedAt, "</p>");
+                                }
+                            })
+							}
+
+                        },
+                        error: function (req, status, error) {
+                            alert("Error: " + req.responseText + " | " + status + " | " + error);
+                        }
+                    });
+
+
+                }
+                else {
+                    lblstatus.innerText = "Must enter a keyword in order to perform a search!";
+                    $("#totalArticles").text("");
+                }
+            });
+			
+
+			
+			$("#btnCategorySearch").click(function () {
+                document.getElementById("searchOutputNews").innerHTML = "";
+                var selectedValue = "";
+                selectedValue = document.getElementById("categorySelect").value;
+                if (selectedValue != "") {
+                    lblstatus.innerText = "";
+                    var strURL = 'https://newsapi.org/v2/top-headlines?country=us&' +
+                                    'category=' + selectedValue + 
+                                    '&apiKey=48ca5b7c4fba4ed7ba3667333527fc6f';
+
+                    // Make an AJAX request and display the response in the appropriate div.
+                    $.ajax({
+                        url: strURL,
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+							$("#totalArticles").text(data.totalResults + " articles found");
+                            // The input parameter data.d contains the JS object returned by the web method.
+                            // Use either data.d to access properties of the object like data.d.mascot or
+                            // put it in a variable and use the variable.
+                            $.each(data.articles, function (index, articles) {
+                                if (articles.urlToImage != null) {
+                                    $("#searchOutputNews").append("<h3>Title: " + articles.title + "</h3>","<img src='" + articles.urlToImage + "' />",
+                                    "<p>", "Short description: ", articles.description, "<a href='" + articles.url + "'> read more</a>", "</p>", "<p>","Source: ", articles.source.name,"</p>",
+                                     "<p>","Posted On: ", articles.publishedAt, "</p>");
+                                }
+                            })
+
+
+                        },
+                        error: function (req, status, error) {
+                            alert("Error: " + req.responseText + " | " + status + " | " + error);
+                        }
+                    });
+
+
+                }
+                else {
+                    lblstatus.innerText = "Must select a category in order to perform a search!";
+                    $("#totalArticles").text("");
+                }
+            });
+			
+			function getRadioValue(theRadioGroup){
+			var emptyValue = "";
+			var radios = document.getElementsByName(theRadioGroup);
+				for (var i = 0; i < radios.length; i++)
+				{
+					if (radios[i].checked)
+					{
+						return radios[i].value;
+					}
+				}
+				return emptyValue;
+			}
+			
+			
+			$("#btnCountrySearch").click(function () {
+                document.getElementById("searchOutputNews").innerHTML = "";
+                var radioValue = "";
+                radioValue = getRadioValue("country");
+                if (radioValue != "") {
+                    lblstatus.innerText = "";
+                    var strURL = 'https://newsapi.org/v2/top-headlines?' +
+                                    'country=' + radioValue + 
+                                    '&apiKey=48ca5b7c4fba4ed7ba3667333527fc6f';
+
+                    // Make an AJAX request and display the response in the appropriate div.
+                    $.ajax({
+                        url: strURL,
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+							$("#totalArticles").text(data.totalResults + " articles found");
+                            // The input parameter data.d contains the JS object returned by the web method.
+                            // Use either data.d to access properties of the object like data.d.mascot or
+                            // put it in a variable and use the variable.
+                            $.each(data.articles, function (index, articles) {
+                                if (articles.urlToImage != null) {
+                                    $("#searchOutputNews").append("<h3>Title: " + articles.title + "</h3>","<img src='" + articles.urlToImage + "' />",
+                                    "<p>", "Short description: ", articles.description, "<a href='" + articles.url + "'> read more</a>", "</p>", "<p>","Source: ", articles.source.name,"</p>",
+                                     "<p>","Posted On: ", articles.publishedAt, "</p>");
+                                }
+                            })
+
+
+                        },
+                        error: function (req, status, error) {
+                            alert("Error: " + req.responseText + " | " + status + " | " + error);
+                        }
+                    });
+
+
+                }
+                else {
+                    lblstatus.innerText = "Must select a country in order to perform a search!";
+                    $("#totalArticles").text("");
+                }
+            });
+			
+	
+
+        });
+
+    </script>
+<footer>
+<p>Powered by <strong><a href="https://newsapi.org/" style="text-decoration:none; color: white;">News API</a></strong>. Content created by Bobur Zakhidov</p>
+</footer>
+
+</body>
+</html>
